@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>해마_업체등록</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+            
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="css/common/css/reset.css"> 
+        <link rel="stylesheet" href="css/common/css/fonts.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
+        <link rel="stylesheet" href="css/insert.css">
+
+        <!-- daum map (주소찾기) -->
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+        <!-- kakao map -->
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08830e6c428270a176beb380a21babdf&libraries=services"></script>
+
+        <script src="css/common/plugins/jQuery/jquery-3.6.0.min.js"></script>
+
+    </head>
+
+    <body data-ma-header="teal">
+       <!--#include virtual = "/manage/inc/header.asp"--> 
+        
+        <section id="main">
+           <!--#include virtual = "/manage/inc/aside.asp"--> 
+
+            <section id="content">
+                <div class="container">
+                    <!-- <div class="c-header">
+                        <h2>Table</h2>
+                    </div> -->
+
+                    <div class="card">
+
+<!--                         <div class="card-header">
+                            <h2>업체 등록<small></small></h2>
+                        </div>
+ -->
+                        <div class="wrap">
+                            <div class="biz_wrapper">
+                                
+                                <div class="biz_info_wrapper">
+                    
+                                    <div class="biz_info_title">
+                                        <span>업체 기본정보</span>
+                                        <span class="require"><i class="xi-check "></i>필수입력</span>
+                                    </div>
+                    
+                                    <!-- 업체명 -->
+                                    <div class="input_wrapper">
+                                        <span class="require"><i class="xi-check "></i>업체명</span>
+                                        <div class="info_input">
+                                            <input  name="e_name" type="text" class="limit" placeholder="업체명을 입력해주세요." maxlength="30" value="">
+                                            <span><span class="char_num">0</span>자<span class="limit_cnt"> / 30자</span></span>
+                                        </div>
+                                    </div>
+                    
+                                    <!-- 업종 -->
+                                    <div class="input_wrapper">
+                                        <span class="require"><i class="xi-check "></i>업종</span>
+                                        <div class="info_input">
+                                            <input  name="biz_category" type="text" class="limit" placeholder="업종을 입력해주세요.">
+                                        </div>
+                                    </div>
+                                   
+                                    <!-- 업종 파일첨부 -->
+                                    <div class="input_wrapper">
+                                        <span class="require require_file_title"></span>
+                    
+                                        <div class="file_wrapper">
+                                            
+                                            <div class="add_file">
+                                                <form method="POST" onsubmit="return false;" enctype="multipart/form-data">
+                                                    <label for="code_file" class="code_file"><i class="xi-folder-add-o"></i>업종파일첨부</label>
+                                                    <input  type="file" onchange="addFile(this);" multiple name="code_file" id="code_file" style="display: none;">
+                                                </form>
+                                                <div class="file_list">
+                                                </div>       
+                                                
+                                            </div>
+                                            <script>
+                                                var fileNo = 0;
+                                                var filesArr = new Array();
+                    
+                                                /* 첨부파일 추가 */
+                                                function addFile(obj){
+                                                    var maxFileCnt = 5;   // 첨부파일 최대 개수
+                                                    var attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
+                                                    var remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
+                                                    var curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
+                    
+                                                    // 첨부파일 개수 확인
+                                                    if (curFileCnt > remainFileCnt) {
+                                                        alert("첨부파일은 최대 " + maxFileCnt + "개 까지 첨부 가능합니다.");
+                                                    }
+                    
+                                                    for (var i = 0; i < Math.min(curFileCnt, remainFileCnt); i++) {
+                    
+                                                        const file = obj.files[i];
+                    
+                                                        // 첨부파일 검증
+                                                        if (validation(file)) {
+                                                            // 파일 배열에 담기
+                                                            var reader = new FileReader();
+                                                            reader.onload = function () {
+                                                                filesArr.push(file);
+                                                            };
+                                                            reader.readAsDataURL(file)
+                    
+                                                            // 목록 추가
+                                                            let htmlData = '';
+                                                            htmlData += '<div id="file' + fileNo + '" class="filebox">';
+                                                            htmlData += '   <span class="name">' + file.name + '</span>';
+                                                            htmlData += '   <a class="delete" onclick="deleteFile(' + fileNo + ');"><i class="fa-solid fa-x"></i></a>';
+                                                            htmlData += '</div>';
+                                                            $('.file_list').append(htmlData);
+                                                            fileNo++;
+                                                        } else {
+                                                            continue;
+                                                        }
+                                                    }
+                                                    // 초기화
+                                                    document.querySelector("input[type=file]").value = "";
+                                                }
+                    
+                                                /* 첨부파일 검증 */
+                                                function validation(obj){
+                                                    const fileTypes = ['application/pdf', 'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 'application/haansofthwp', 'application/x-hwp'];
+                                                    if (obj.name.length > 100) {
+                                                        alert("파일명이 100자 이상인 파일은 제외되었습니다.");
+                                                        return false;
+                                                    } else if (obj.size > (100 * 1024 * 1024)) {
+                                                        alert("최대 파일 용량인 100MB를 초과한 파일은 제외되었습니다.");
+                                                        return false;
+                                                    } else if (obj.name.lastIndexOf('.') == -1) {
+                                                        alert("확장자가 없는 파일은 제외되었습니다.");
+                                                        return false;
+                                                    } else if (!fileTypes.includes(obj.type)) {
+                                                        alert("첨부가 불가능한 파일은 제외되었습니다.");
+                                                        return false;
+                                                    } else {
+                                                        return true;
+                                                    }
+                                                }
+                    
+                                                /* 첨부파일 삭제 */
+                                                function deleteFile(num) {
+                                                    document.querySelector("#file" + num).remove();
+                                                    filesArr[num].is_delete = true;
+                                                }
+                    
+                                                /* 폼 전송 */
+                                                function submitForm() {
+                                                    // 폼데이터 담기
+                                                    var form = document.querySelector("form");
+                                                    var formData = new FormData(form);
+                                                    for (var i = 0; i < filesArr.length; i++) {
+                                                        // 삭제되지 않은 파일만 폼데이터에 담기
+                                                        if (!filesArr[i].is_delete) {
+                                                            formData.append("attach_file", filesArr[i]);
+                                                        }
+                                                    }
+                    
+                                                    $.ajax({
+                                                        method: 'POST',
+                                                        url: '/register',
+                                                        dataType: 'json',
+                                                        data: formData,
+                                                        async: true,
+                                                        timeout: 30000,
+                                                        cache: false,
+                                                        headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+                                                        success: function () {
+                                                            alert("파일업로드 성공");
+                                                        },
+                                                        error: function (xhr, desc, err) {
+                                                            alert('에러가 발생 하였습니다.');
+                                                            return;
+                                                        }
+                                                    })
+                                                }
+                                            </script>
+                                    
+                                            <p>＊ 사업자등록증, 통신판매허가증 등 업종과 관련된 서류를 업로드 바랍니다. <br>
+                                            ＊ 5MB 이하의 jpg, jpeg, gif, png 파일형식만 가능합니다. <br>
+                                            ＊ 주민등록번호 등 개인정보가 보이지 않도록 처리한 뒤 업로드 바랍니다.</p>
+                    
+                    
+                                        </div>
+                                    </div>
+                                    
+                    
+                                    <!-- 업체사진 -->
+                                    <div class="input_wrapper">
+                                        <span class="img_title">업체사진</span  >
+                                        <div class="image_file_wrapper">
+                                            <ul id="img_list"> 
+                                                <li class="img_list" ></li>
+                                            </ul>
+                                                
+                                            <div class="add_image">
+                                                <label for="enterprise_img"><i class="xi-folder-add-o"></i></label>
+                                                <input type="file" multiple id="enterprise_img" name="enterprise_img" />
+                                                <span>업체사진 추가/관리</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 상세설명 -->
+                                    <div class="input_wrapper">
+                                        <span>상세설명</span>
+                                        <div class="info_input">
+                                            <textarea name="desc" id="desc" cols="30" rows="10" class="limit" placeholder="업체를 고객들에게 자세히 입력해주세요." maxlength="2000"></textarea>
+                                            <span><span class="char_num">0</span>자<span class="limit_cnt"> / 2000자</span></span>
+                                        </div>
+                                    </div>
+                    
+                                    <!-- 대표키워드 -->
+                                    <div class="input_wrapper tr_hashTag_area">
+                                        <span>대표키워드</span>
+                                        <div class="info_input">
+                                            <input type="text" id="tag" class="limit" placeholder="업체를 대표하는 상품명/서비스명 등을 입력하시고 엔터를 눌러주세요. 예) 유람선, 여객선"  maxlength="15" name="tag">
+                                            <span><span class="char_num">0</span>자<span class="limit_cnt"> / 15자</span></span>
+                                            <ul id="tag-list" class="tag-list"></ul>
+                                        </div>
+                    
+                                        <div class="info_input" style="display: none;">
+                                            <input type="hidden" value="" name="tag" id="rdTag" />
+                                        </div>
+                                    </div>
+                                    
+                    
+                                    <!-- 연락처 -->
+                                    <div class="reserve_phone input_wrapper">
+                                        <div class="phone_title">
+                                            <span class="require"><i class="xi-check "></i>전화번호</span>
+                                        </div>
+                    
+                                        <div class="phone_input">
+                                            <input type="text" class="phone" value="010" maxlength="4" name="phone" id="phone_first" >
+                                            <span>-</span>
+                                            <input type="text" class="phone" maxlength="4" name="phone" id="phone_middle">
+                                            <span>-</span>
+                                            <input type="text" class="phone" maxlength="4" name="phone" id="phone_last">
+                                        </div>
+                                    </div>
+                    
+                                    <!-- 주소 -->
+                                    <div class="input_wrapper address">
+                                        <span class="require"><i class="xi-check "></i>주소</span>
+                                        <div class="info_input">
+                                            <input type="text" placeholder="주소를 입력하세요." id="biz_add" readonly name="biz_add">
+                                            <input type="text" placeholder="상세위치를 입력하세요. 클릭하시면 지도가 나타납니다." name="add_detail"  id="add_detail">
+                    
+                                            <div class="info_input" id="map"></div>
+                    
+                                            <!-- <button class="map_btn_false map_btn" id="map_btn_false">
+                                                위치가 달라요
+                                            </button>
+                    
+                                            <div class="map_false">
+                                                <span>
+                                                    마커가 정확한 위치로 오도록<br>
+                                                    지도를 움직여주세요.
+                                                    <i class="xi-close"></i>
+                                                </span>
+                                                <div class="map_edit" id="map_edit"></div>
+                                                <button class="map_false_save_btn">확인</button>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                    
+                                    <div class="input_wrapper">
+                                        <span>찾아오는 길</span>
+                                        <div class="info_input">
+                                            <textarea name="add_detail" id="add_detail" cols="30" rows="10" class="limit" placeholder="방문객이 쉽게 찾도록 위치에 대한 상세한 설명 및 교통편을 입력해주세요.
+예) 지하철역 1번 출구에서 200m 직진하면 우측에 보이는 주유소 건물 1층입니다." maxlength="400"  ></textarea>
+                                            <span><span class="char_num">0</span>자<span class="limit_cnt"> / 400자</span></span>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="input_wrapper">
+                                        <span>휴무일</span>
+                                        <div class="off">
+                                            <div class="off_select_wrapper">
+                                                <select name="off" id="off" class="term_select">
+                                                    <option value="" >없음</option>
+                                                    <option value="adjust" class="adjust_option">있음</option>
+                                                </select>
+                        
+                                                <ul class="off_date" >
+                                                    <li name="off" id="off_mon" class="off_week">월</li>
+                                                    <li name="off" id="off_tue" class="off_week">화</li>
+                                                    <li name="off" id="off_wen" class="off_week">수</li>
+                                                    <li name="off" id="off_thu" class="off_week">목</li>
+                                                    <li name="off" id="off_fri" class="off_week">금</li>
+                                                    <li name="off" id="off_sat" class="off_week">토</li>
+                                                    <li name="off" id="off_sun" class="off_week">일</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="input_wrapper">
+                                        <span>영업시간</span>
+                    
+                                        <div class="open">
+                                            <div class="open_select_wrapper">
+                                                <select name="opne" id="opne" class="time_select">
+                                                    <option value="adjust"  class="adjust_option">모든요일 같아요</option>
+                                                    <option value="" >평일 / 주말 달라요</option>
+                                                </select>
+                    
+                                                <!-- 모든요일 -->
+                                                 <div class="every_week">
+                                                    <select id="open_time" onchange="s_time_select(this)" class="time_cont" name="every_week" ></select>
+                                                    
+                                                    <select id="close_time" onchange="s_time_select(this)" class="time_cont" name="every_week"></select>
+                                                </div>
+                                                 
+                                                <!-- 평일 -->
+                                                <div class="weekday week"  >
+                                                    <p >평일</p>
+                                                    <select id="weekday_open_time" onchange="s_time_select(this)" class="time_cont" name="weekday"></select>
+                                                    
+                                                    <select id="weekday_close_time" onchange="s_time_select(this)" class="time_cont" name="weekday"></select>
+                                                </div>
+                    
+                                                <!-- 주말 -->
+                                                <div class="weekend week">
+                                                    <p>주말</p>
+                                                    <select id="weekend_open_time" onchange="s_time_select(this)" class="time_cont" name="weekend"></select>
+                                                    
+                                                    <select id="weekend_close_time" onchange="s_time_select(this)" class="time_cont" name="weekend"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                    <!-- 웹사이트 -->
+                                    <div class="reserve_site ">
+                                        <div class="site_title">
+                                            <span>웹사이트</span>
+                                        </div>
+                    
+                                        <div class="phone_input">
+                                            <input type="text" placeholder="웹사이트를 입력해주세요." name="web_site" id="web_site">
+                                        </div>
+                                    </div>
+                    
+                    
+                                </div>
+                            </div>
+                    
+                            <div class="save_btn">
+                                <button>저장</button>
+                            </div>
+                    
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--#include virtual = "/manage/inc/footer.asp"--> 
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+
+     
+        
+        
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+        <script src="js/demo.js"></script>
+        
+        <script src="https://kit.fontawesome.com/70c929d7d4.js" crossorigin="anonymous"></script>
+        <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /> 
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script> 
+    
+        <script src="js/biz_insert.js"></script>
+
+       
+    </body>
+  </html>
+     <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>   
+        <![endif]-->
