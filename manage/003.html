@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="ko"
+	class=" modernizr-js modernizr-flexbox modernizr-flexboxlegacy modernizr-canvas modernizr-canvastext modernizr-webgl modernizr-no-touch modernizr-geolocation modernizr-postmessage modernizr-websqldatabase modernizr-indexeddb modernizr-hashchange modernizr-history modernizr-draganddrop modernizr-websockets modernizr-rgba modernizr-hsla modernizr-multiplebgs modernizr-backgroundsize modernizr-borderimage modernizr-borderradius modernizr-boxshadow modernizr-textshadow modernizr-opacity modernizr-cssanimations modernizr-csscolumns modernizr-cssgradients modernizr-cssreflections modernizr-csstransforms modernizr-csstransforms3d modernizr-csstransitions modernizr-fontface modernizr-generatedcontent modernizr-video modernizr-audio modernizr-localstorage modernizr-sessionstorage modernizr-webworkers modernizr-no-applicationcache modernizr-svg modernizr-inlinesvg modernizr-smil modernizr-svgclippaths">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- META -->
+	<meta name="Generator" content="XpressEngine">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- TITLE -->
+	<title>온라인예약</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="./css/xe.min.css">
+	<link rel="stylesheet" href="./css/popup_opener.css">
+	<link rel="stylesheet" href="./css/jquery-ui.min.css">
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/swiper.css">
+	<link rel="stylesheet" href="./css/doweb-style.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./css/layout.css">
+	<link rel="stylesheet" href="./css/custom.css">
+	<link rel="stylesheet" href="./css/jquery.mmenu.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<!-- JS -->
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/x.min.js"></script>
+	<script src="./js/xe.min.js"></script>
+	<script src="./js/jquery.popup_opener.1.5.4.3.js"></script>
+	<script src="./js/respond.min.js"></script>
+	<script src="./js/html5shiv.js"></script>
+	<script src="./js/jquery.mmenu.min.js"></script>
+	<script src="./js/swiper.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/doweb-jquery.custom.js"></script>
+	<script src="./js/scrolltopcontrol.js"></script>
+	<script src="./js/jquery.sticky.js"></script>
+	<script src="./js/init.js"></script>
+	<script src="./js/jquery.placeholder.js"></script>
+	<!-- RSS -->
+	<!-- ICON -->
+
+	<style>
+		.ui-datepicker {
+			padding: 0;
+		}
+
+		.ui-widget-content,
+		.ui-widget.ui-widget-content {
+			border: none;
+		}
+
+		.ui-datepicker-inline {
+			width: 100% !important;
+		}
+
+		.ui-state-default,
+		.ui-widget-content .ui-state-default {
+			background: none;
+			margin: 0 auto;
+			border-radius: 5px;
+		}
+
+		.ui-state-default,
+		.ui-widget-content .ui-state-default,
+		.ui-widget-header .ui-state-default,
+		.ui-button,
+		html .ui-button.ui-state-disabled:hover,
+		html .ui-button.ui-state-disabled:active {
+			border: 2px solid #06abba;
+		}
+
+		.ui-state-highlight,
+		.ui-widget-content .ui-state-highlight,
+		.ui-widget-header .ui-state-highlight {
+			/*border: 2px solid #f65579; */
+		}
+
+		.ui-datepicker-unselectable.ui-state-disabled {
+			opacity: 1;
+		}
+
+		.ui-datepicker-unselectable.ui-state-disabled .ui-state-default {
+			border: none;
+		}
+
+		.ui-datepicker select.ui-datepicker-month,
+		.ui-datepicker select.ui-datepicker-year {
+			width: 40%;
+		}
+
+		.ui-datepicker select.ui-datepicker-month {
+			margin-left: 10px;
+		}
+
+		.ui-widget.ui-widget-content {
+			height: 333px;
+		}
+
+		.ui-datepicker-week-end .ui-state-default {
+			border: 2px solid #f65579;
+		}
+
+		.ui-state-active,
+		.ui-widget-content .ui-state-active,
+		.ui-widget-header .ui-state-active,
+		a.ui-button:active,
+		.ui-button:active,
+		.ui-button.ui-state-active:hover {
+			border-radius: 50%;
+			/* border-width: 3px; */
+			color: #454545;
+			
+		}
+
+		.ui-datepicker th {
+			width: 14.3333%;
+		}
+
+		.ui-datepicker td {
+			border: 0;
+			padding: 2px 0;
+		}
+
+		.ui-datepicker td span,
+		.ui-datepicker td a {
+			display: block;
+			width: 36px;
+			height: 36px;
+			border: 2px solid #06abba;
+			/* border-radius: 50%; */
+			text-align: center;
+			padding: 0;
+			line-height: 32px;
+		}
+
+		.ui-datepicker table {
+			margin-bottom: 0;
+		}
+
+		.calendar_legend {
+			height: 44px;
+			padding: 2px 6px;
+			background-color: #f4f8fb;
+		}
+
+		.calendar_legend ul li {
+			margin-left: 5px;
+		}
+
+		.ex_span {
+			display: table-cell;
+			width: 40px;
+			height: 40px;
+			border-radius: 5px;
+			font-size: 11px;
+			text-align: center;
+			line-height: 1.2;
+			vertical-align: middle;
+		}
+
+		@media(max-width:992px) {
+			.ui-datepicker td {
+				padding: 5px 0;
+			}
+
+			.ui-datepicker td a {
+				width: 35px;
+				height: 35px;
+			}
+		}
+
+		.table.priceTable>thead>tr>th,
+		.table.priceTable>tbody>tr>th,
+		.table.priceTable>tfoot>tr>th,
+		.table.priceTable>thead>tr>td,
+		.table.priceTable>tbody>tr>td,
+		.table.priceTable>tfoot>tr>td {
+			padding: 10px 3px;
+		}
+	</style>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+</head>
+
+<body>
+
+
+
+	<!-- CSS Styles -->
+
+	<!-- Main Section -->
+	<!--/ Main Section -->
+	<!-- Sub Section -->
+	<section class="sub_section">
+		<!-- Sub Visual -->
+		<div class="sub_visual hidden-sm hidden-xs">
+			<div>
+				<div class="sub_title_wrap">
+					<div class="big_title  white_text text-center">온라인예약</div>
+				</div>
+			</div>
+			<div class="sub_title_wrap">
+			</div>
+		</div><!-- PC -->
+		<div class="hidden-lg hidden-md" style="height:68px;">
+		</div><!-- Mobile -->
+		<!--/ Sub Visual -->
+		<!-- Sub Content -->
+		<div class="sub_content">
+			<div class="container">
+				<div class="sub_title3 hidden-lg hidden-md">
+				</div>
+				<div class="hidden-lg hidden-md">
+					<div>
+					</div><!-- Mobile -->
+				</div>
+				<div>
+
+					<!-- 약관동의 후 나타나는 Modal 확인창 -->
+					<div class="modal msg_modal fade" id="privacy_agree" tabindex="-1" role="dialog"
+						aria-labelledby="privacy_agree" aria-hidden="true" style="display: none;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-body text-center">
+									<div class="text-primary" style="margin-bottom:20px; font-size:120px;"><i class="fa fa-exclamation-circle"></i></div>
+									<span class="ticket_text_color">필독사항과 환불약관</span>은 매우 중요한 사항입니다.<br>
+									즐거운 여행을 위해 <span class="ticket_text_color">예약 전 꼼꼼히 확인</span>해 주세요.
+								</div>
+								<div class="modal-footer" style="border:0;">
+									<button type="button" class="btn btn-default" style="height:32px !important;"
+										data-dismiss="modal">취소</button>
+									<button type="button" class="btn conceptBgColor" style="height:32px !important;"
+										data-dismiss="modal" onclick="receiptAgree()">확인</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/ 날짜 비교 후 나타나는 Modal 확인창 -->
+					<div class="modal msg_modal fade in" id="refund_alert" tabindex="-1" role="dialog"
+						aria-labelledby="refund_alert" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-body text-center">
+									<div class="text-primary" style="margin-bottom:20px; font-size:120px;"><i class="fa fa-exclamation-circle"></i></div>
+									<div class="modal-text">
+										승선일 하루 전날부터 취소수수료가 발생합니다.<br>
+										<span style="color:#f71749;">예약 후 30분 경과한 후</span> 취소하시면 환불약관의<br>
+										취소수수료 적용됩니다.<br>
+										<span class="ticket_text_color">모든 내용을 신중히 확인하시고 예약해 주세요.</span>
+									</div>
+								</div>
+								<div class="modal-footer" style="border:0;">
+									<button type="button" class="btn btn-default" style="height:32px !important;"
+										data-dismiss="modal">취소</button>
+									<button type="button" class="btn conceptBgColor" style="height:32px !important;"
+										data-dismiss="modal" onclick="receiptStep(0)">확인</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/ Alert Modal -->
+					<div class="modal msg_modal fade" id="alert-modal" tabindex="-1" role="dialog"
+						aria-labelledby="refund_alert" aria-hidden="true" style="display: none;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-body text-center">
+									<div class="text-primary" style="margin-bottom:20px; font-size:120px;"><i class="fa fa-exclamation-circle"></i></div>
+									<div class="modal-text">온라인 예약은 신용카드 결제만 가능합니다.<br>현금 또는 무통장입금을 원하시면 선사로 연락 주시기
+										바랍니다.<br>문의 : 1668-2240 (거제저도유람선)</div>
+								</div>
+								<div class="modal-footer" style="border:0;">
+									<button type="button"
+										class="btn conceptBgColor" style="height:32px !important;"
+										data-dismiss="modal">확인</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/ danal Modal -->
+					<div class="modal msg_modal fade in" id="danal-modal" tabindex="-1" role="dialog"
+						aria-labelledby="refund_alert" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-body">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/ 변경 / 취소 Modal -->
+					<div class="modal msg_modal fade in" id="change-modal" tabindex="-1" role="dialog"
+						aria-labelledby="refund_alert" aria-hidden="true">
+						<div class="modal-dialog" style="width:300px;">
+							<div class="modal-content"></div>
+						</div>
+					</div>
+					<!--/ 승선명부 Modal -->
+					<div class="modal msg_modal fade in" id="person-modal" tabindex="-1" role="dialog"
+						aria-labelledby="refund_alert" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-body"></div>
+								<div class="modal-footer"></div>
+							</div>
+						</div>
+					</div>
+					<!-- 약관동의 -->
+					<section id="receiptAgree" class="receiptSection" style="display: none;">
+						<div class="sub_title text-center">
+							약관동의
+						</div>
+						<div class="row">
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+								<div class="panel panel-default sub_panel">
+									<div class="panel-heading">필독사항(필수동의)</div>
+									<div class="panel-body">
+										<ul style="padding-left:20px; margin:0;">
+											<li>
+												유람선 이용 시 <span class="ticket_text_color">전원 개인 신분증을 제시</span>하셔야 합니다.
+												어린이 및 아동은 <span class="ticket_text_color">등본 또는 의료보험증</span> 등 확인 가능한
+												서류를 지참하셔야 합니다.<br>
+												※ 신분증 미소지자 승선불가 (주의 : 신분증 미소지로 승선하지 못한 경우 환불없음)
+											</li>
+											<li>
+												매표마감시간은 예약하신 <span class="ticket_text_color">출항시간 30분 전</span>까지 입니다.유람선
+												매표소에 매표마감시간 전까지 승선권을 수령하지 않으면 승선 의사가 없는 것으로 판단하여 <span
+													class="ticket_text_color">통보 없이 자동 예약 취소</span>됩니다.<br>
+												※ 주의 : 환불없음
+											</li>
+											<li>
+												승선 당일은 날짜, 시간등의 변경이 불가합니다.
+											</li>
+											<li>
+												승선일 파도, 안개등의 기상상황, 승하선시 시간 지연으로 출항시간이 10~30분 <span
+													class="ticket_text_color">조기 출항 또는 지연 출항</span>할 수 있습니다.
+											</li>
+											<li>
+												기상상태, 천재지변, 선박의 이상상태, 관할 경찰의 출입항 통제 또는 최소출항인원의 부족으로 인한 예기치 못한 사항으로 운항이
+												불가능할 경우 출항 시간이 <span class="ticket_text_color">지연 또는 취소</span>될 수 있으며
+												문자메세지를 통해 공지합니다. 해당 사항의 경우 <span class="ticket_text_color">전액
+													환불</span>됩니다.
+											</li>
+											<li>
+												시중에 유통되는 펜션 및 타사이트의 할인쿠폰에 대하여 중복 적용이 불가합니다. 예약과 동시에 할인쿠폰과 동일한 금액으로 자동
+												할인됩니다.
+											</li>
+											<li>
+												자사의 모든 상품은 <span class="ticket_text_color">개인 고객에게 판매가 가능한 상품</span>이며
+												<span class="ticket_text_color">여행사 및 단체버스 또는 대절차량</span>을 이용하는 고객께서는 상품
+												구입이 <span class="ticket_text_color">불가능</span>합니다.본 규정은 자사 규정이며 당일 위반 확인
+												시 예약취소되며 약관위반으로 환불 불가합니다.
+											</li>
+											<li>
+												승선 당일 <span class="ticket_text_color">최소출항인원</span>이 부족한 경우 <span
+													class="ticket_text_color">예약시간 변경</span> 또는 <span
+													class="ticket_text_color">전액환불 취소</span>될 수 있습니다.
+											</li>
+											<li>
+												<span class="ticket_text_color">애완동물</span>은 유람선 승선이 <span
+													class="ticket_text_color">불가</span>하며 유람선사에 따로 보관할 장소도 없습니다.
+											</li>
+											<li>
+												저도 입도 후 <span class="ticket_text_color">주의사항 미이행 및 본인부주의</span>로 사고 발생시
+												책임을 지지 않습니다.
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+								<div class="panel panel-default sub_panel">
+									<div class="panel-heading">환불약관(필수동의)</div>
+									<div class="panel-body">
+										<p><b>[환불규정]</b></p>
+										<ul style="padding-left:20px; margin:0;">
+											<li>
+												이용자의 사정으로 인하여 승선하지 않거나 출항 전 또는 항해도중 선박의 고장, 사고, 일기관계 등으로 유선이 운항을 하지 못하는
+												경우에는 다음의 기준에 의하여 환불합니다.
+											</li>
+										</ul>
+										<br>
+										(승객이 승선권 구입 후 승객의 <span class="ticket_text_color">개인 사정</span>에 의하여 승선을 보류 또는
+										취소하였을 경우)
+										<br>
+										<span class="red_emphasis_text">섬여행 코스</span>
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th class="text-center">승선 2일전</th>
+													<th class="text-center">승선 1일전</th>
+													<th class="text-center">승선 당일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="text-center">전액환불</td>
+													<td class="text-center">70% 환불</td>
+													<td class="text-center">환불 불가</td>
+												</tr>
+											</tbody>
+										</table>
+										<span class="red_emphasis_text">저도입도 시</span>
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th class="text-center">승선 4일전</th>
+													<th class="text-center">승선 3일전</th>
+													<th class="text-center">승선 당일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="text-center">70%</td>
+													<td class="text-center">환불 불가</td>
+													<td class="text-center">환불 불가</td>
+												</tr>
+											</tbody>
+										</table>
+										(<span class="ticket_text_color">일기관계</span> 등 사업자의 책임이 없는 사유로 인하여 유선이 운항하지 못하는
+										경우)
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th class="text-center">출항 전</th>
+													<th class="text-center">출항 후</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="text-center">전액환불</td>
+													<td class="text-center">이용객의 요청이 있을 때까지는<br>반액 환불</td>
+												</tr>
+											</tbody>
+										</table>
+										(<span class="ticket_text_color">선박의 고장, 사고</span> 등 사업자의 책임으로 인하여 운항하지 못하는 경우)
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th class="text-center">출항 전</th>
+													<th class="text-center">출항 후</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="text-center">전액환불</td>
+													<td class="text-center">다른 선박을 이용토록 조치<br>(환불하지 않음)</td>
+												</tr>
+											</tbody>
+										</table>
+										<ul style="padding-left:20px; margin:0;">
+											<li>
+												승선하루전날 또는 승선당일 예약을 예약 후 즉시 취소하는 경우 승선일 기준으로 환불규정에 따라 적용되니 필히 검토 후 예약을
+												진행하시기 바랍니다.
+											</li>
+											<!--
+	<li>
+		<span class="ticket_text_color">개인사정</span>으로 취소를 진행하실 고객님께서는 <span class="ticket_text_color">승선 5일전</span> 업무시간(업무종료 17:00) 내에 취소 신청하셔야 <span class="ticket_text_color">환불수수료가 없습니다</span>. 
+	</li>
+	-->
+											<li>
+												<span class="ticket_text_color">업무시간(업무종료 17:00)</span>에만 <span
+													class="ticket_text_color">취소/변경이 가능</span>하며 업무시간 이후 신청은 익일 취소로
+												처리됩니다.
+											</li>
+											<li>
+												변경/취소는 메뉴의 <span class="ticket_text_color">[조회/변경/취소]</span>를 이용하여 요청하시기
+												바랍니다.
+											</li>
+											<li>
+												<span class="ticket_text_color">승선 당일은 모든 변경이 불가</span>합니다.
+											</li>
+											<li>
+												<span class="ticket_text_color">우천 시에도 정상 출항</span>합니다. 승선 당일 우천으로 인한 취소
+												요청은 환불규정에 따라 수수료 적용을 받습니다.
+												<!--<br />
+		※ <span class="ticket_text_color">우천 시 이용을 원하지 않는 고객님은 기상청 웹사이트를 이용해서 미리 예보를 확인하셔서 승선 2일전 업무시간(업무종료 17:00)내에 취소 바랍니다. </span>
+		-->
+											</li>
+										</ul>
+										<br>
+										<p><b>[환불절차]</b></p>
+										<ul style="padding-left:20px; margin:0;">
+											<li>
+												<span class="ticket_text_color">무통장(가상계좌)</span> : 환불접수 후 익일 평일 고객님
+												환불계좌로 환불됩니다.
+											</li>
+											<li>
+												<span class="ticket_text_color">신용카드 결제 취소 안내</span> : 인원 부분취소는 승선완료 후
+												신용카드 결제금액 차액이 부분취소되며 전체취소는 요청접수 후 익일 평일 처리됩니다.
+											</li>
+											<li>
+												당사에서 카드사에 취소 요청 후 3~6일 후에 카드사에서 취소처리가 완료됩니다.
+											</li>
+											<li>
+												체크카드의 경우 취소 즉시 환불 처리되며 신용카드의 경우 결제가 청구되지 않았거나 이미 청구가 된 경우 익월 청구 시 환불금액만큼
+												공제 처리됩니다.
+											</li>
+											<li>
+												카드사의 환불처리방법이 상이한 경우가 있으니 처리가 완료되었음에도 환불이 정상 확인되지 않는 경우 자세한 사항은 카드사로
+												문의하시기 바랍니다.
+											</li>
+										</ul>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+								<div class="panel panel-default sub_panel">
+									<div class="panel-heading">
+										이용자약관(필수동의)
+									</div>
+									<div class="panel-body">
+										<form name="form1" id="form1" method="POST"><input type="hidden"
+												name="error_return_url" value="/sub01"><input type="hidden" name="act"
+												><input type="hidden" name="mid" value="sub01"><input
+												type="hidden" name="vid" >
+											<div style="height:calc(100% - 48px);">
+												<div class="form-group">
+													<p>개인정보 수집 및 동의</p>
+													<textarea name="" class="form-control" readonly="">'(주)거제저도유람선'은 (이하 '회사'는)
+고객님의 개인정보를 중요시하며, "정보통신망 이용촉진 및 정보보호"에 관한 법률을 준수하고 있습니다. 저도입도자의 경우 "군사기밀보호법 및 군사기지 및 군사시설 보호법"에 의거하여 예약자 및 입도자 명부를 지정된 양식에 맞추어 작성해주셔야 입도가 가능합니다.
+회사는 개인정보취급방침을 통하여 고객님께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
+회사는 개인정보취급방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.
+본 방침은 : 2019 년 01 월 01 일 부터 시행됩니다.
+========================================
+[수집하는 개인정보 항목]
+회사는 회원가입, 상담, 서비스 신청 등등을 위해 아래와 같은 개인정보를 수집하고 있습니다.
+• 수집항목 : 이름 , 생년월일 , 성별 , 로그인ID , 비밀번호 , 비밀번호 질문과 답변 , 자택 전화번호 , 자택 주소 , 휴대전화번호 , 이메일 , 직업 , 취미 , 주민등록번호 , 신용카드 정보 , 은행계좌 정보 , 서비스 이용기록 , 접속 로그 , 쿠키 , 접속 IP 정보 , 결제기록 등...
+• 개인정보 수집방법 : 홈페이지(회원가입, 상품구매, 저도입도자명부) 
+========================================
+[개인정보의 수집 및 이용목적]
+회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.
+• 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산
+  콘텐츠 제공 , 구매 및 요금 결제 , 물품배송 또는 청구지 등 발송 , 금융거래 본인 인증 및 금융 서비스
+• 회원 관리
+  회원제 서비스 이용에 따른 본인확인 , 개인 식별 , 불량회원의 부정 이용 방지와 비인가 사용 방지 , 가입 의사 확인 , 연령확인 , 만14세 미만 아동 개인정보 수집 시 법정 대리인 동의여부 확인 , 불만처리 등 민원처리 , 고지사항 전달
+• 마케팅 및 광고에 활용
+  신규 서비스(제품) 개발 및 특화 , 이벤트 등 광고성 정보 전달 , 인구통계학적 특성에 따른 서비스 제공 및 광고 게재 , 접속 빈도 파악 또는 회원의 서비스 이용에 대한 통계
+• 저도입도를 위한 입도자 명부 군부대제출
+  관련법안내
+1. 군사기밀 보호법
+  ◦제10조(군사기밀의 보호조치 불이행) : 군사기밀 보호에 필요한 조치를 하지 아니한 경우 2년이하의 징역
+  ◦제11조(탐지수집) : 군사기밀을 적법한 절차에 의하지 아니한 방법으로 탐지 또는 수집한 사람 10년이하의 징역
+  ◦제12조(누설) : 탐지 또는 수집한 기밀을 누설한 경우 1년 이상 유기징역
+2. 군사기지 및 군사시설 보호법
+  ◦ 제 9조(보호구역에서의 금지 또는 제한)∙24조(벌칙)
+    - 군사 시설물에 대한 임의 촬영 및 묘사시 3년 이하의 징역 또는 3천만원이하의 벌금
+    - 허가를 받지않고 부대출입시 1년 이하의 징역 또는 1천만원 이하의 벌금
+========================================
+[개인정보의 보유 및 이용기간]
+원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 아래와 같이 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다.
+• 보존 항목 : 이름 , 생년월일 , 성별 , 로그인ID , 비밀번호 , 비밀번호 질문과 답변 , 자택 전화번호 , 자택 주소 , 휴대전화번호 , 이메일 , 직업 , 취미 , 주민등록번호 , 신용카드 정보 , 은행계좌 정보 , 서비스 이용기록 , 접속 로그 , 쿠키 , 접속 IP 정보 , 결제기록
+• 보존 근거 : 전자상거래등에서의 소비자보호에 관한 법률
+• 보존 기간 : 3년
+• 표시/광고에 관한 기록 : 6개월 (전자상거래등에서의 소비자보호에 관한 법률)
+• 계약 또는 청약철회 등에 관한 기록 : 5년 (전자상거래등에서의 소비자보호에 관한 법률)
+• 대금결제 및 재화 등의 공급에 관한 기록 : 5년 (전자상거래등에서의 소비자보호에 관한 법률)
+• 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년 (전자상거래등에서의 소비자보호에 관한 법률)
+• 신용정보의 수집/처리 및 이용 등에 관한 기록 : 3년 (신용정보의 이용 및 보호에 관한 법률)
+========================================
+[개인정보의 파기절차 및 방법]
+회사는 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 파기절차 및 방법은 다음과 같습니다.
+• 파기절차
+  회원님이 회원가입 등을 위해 입력하신 정보는 목적이 달성된 후 별도의 DB로 옮겨져(종이의 경우 별도의 서류함) 내부 방침 및 기타 관련 법령에 의한 정보보호 사유에 따라(보유 및 이용기간 참조) 일정 기간 저장된 후 파기되어집니다. 별도 DB로 옮겨진 개인정보는 법률에 의한 경우가 아니고서는 보유되어지는 이외의 다른 목적으로 이용되지 않습니다.
+• 파기방법 
+  전자적 파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다. 
+========================================
+[개인정보 제공]
+회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다.
+• 이용자들이 사전에 동의한 경우
+• 법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우
+========================================
+[수집한 개인정보의 위탁]
+회사는 고객님의 동의 없이 고객님의 정보를 외부 업체에 위탁하지 않습니다. 향후 그러한 필요가 생길 경우, 위탁 대상자와 위탁 업무 내용에 대해 고객님에게 통지하고 필요한 경우 사전 동의를 받도록 하겠습니다.
+========================================
+[이용자 및 법정대리인의 권리와 그 행사방법]
+• 이용자 및 법정 대리인은 언제든지 등록되어 있는 자신 혹은 당해 만 14세 미만 아동의 개인정보를 조회하거나 수정할 수 있으며 가입해지를 요청할 수도 있습니다.
+• 이용자 혹은 만 14세 미만 아동의 개인정보 조회, 수정을 위해서는 ‘개인정보변경’(또는 ‘회원정보수정’ 등)을 가입해지(동의철회)를 위해서는 “회원탈퇴”를 클릭하여 본인 확인 절차를 거치신 후 직접 열람, 정정 또는 탈퇴가 가능합니다. 혹은 개인정보관리책임자에게 서면, 전화 또는 이메일로 연락하시면 지체 없이 조치하겠습니다.
+• 귀하가 개인정보의 오류에 대한 정정을 요청하신 경우에는 정정을 완료하기 전 까지 개인정보를 이용 또는 제공하지 않습니다. 또한 잘못된 개인정보를 제3자에게 이미 제공한 경우에는 정정 처리결과를 제3자에게 지체 없이 통지하여 정정이 이루어지도록 하겠습니다.
+• 회사는 이용자 혹은 법정 대리인의 요청에 의해 해지 또는 삭제된 개인정보는 “회사가 수집하는 개인정보의 보유 및 이용기간”에 명시된 바에 따라 처리하고 그 외의 용도로 열람 또는 이용할 수 없도록 처리하고 있습니다.
+========================================
+[개인정보 자동수집 장치의 설치, 운영 및 그 거부에 관한 사항]
+회사는 귀하의 정보를 수시로 저장하고 찾아내는 ‘쿠키(cookie)’ 등을 운용합니다. 쿠키란 회사의 웹사이트를 운영하는데 이용되는 서버가 귀하의 브라우저에 보내는 아주 작은 텍스트 파일로서 귀하의 컴퓨터 하드디스크에 저장됩니다. 회사는 다음과 같은 목적을 위해 쿠키를 사용합니다.
+• 쿠키 등 사용 목적
+  회원과 비회원의 접속 빈도나 방문 시간 등을 분석, 이용자의 취향과 관심분야를 파악 및 자취 추적, 각종 이벤트 참여 정도 및 방문 회수 파악 등을 통한 타겟 마케팅 및 개인 맞춤 서비스 제공
+  귀하는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서 귀하는 웹브라우저에서 옵션을 설정함으로써 모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 아니면 모든 쿠키의 저장을 거부할 수도 있습니다. 
+• 쿠키 설정 거부 방법
+  예 : 쿠키 설정을 거부하는 방법으로는 회원님이 사용하시는 웹 브라우저의 옵션을 선택함으로써 모든 쿠키를 허용하거나 쿠키를 저장할 때마다 확인을 거치거나, 모든 쿠키의 저장을 거부할 수 있습니다. 
+• 설정방법 
+  예(인터넷 익스플로어의 경우) : 웹 브라우저 상단의 도구 &gt; 인터넷 옵션 &gt; 개인정보
+  단, 귀하께서 쿠키 설치를 거부하였을 경우 서비스 제공에 어려움이 있을 수 있습니다.
+========================================
+[개인정보에 관한 민원서비스]
+회사는 고객의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위하여 아래와 같이 관련 부서 및 개인정보관리책임자를 지정하고 있습니다.
+• 개인정보관리책임자 성명 : 김재도
+• 전화번호 : 1668-2240
+• 이메일 : juju105@daum.net
+귀하께서는 회사의 서비스를 이용하시며 발생하는 모든 개인정보보호 관련 민원을 개인정보관리책임자 혹은 담당부서로 신고하실 수 있습니다. 회사는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 드릴 것입니다. 기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.
+1.개인분쟁조정위원회 (www.1336.or.kr/1336)
+2.정보보호마크인증위원회 (www.eprivacy.or.kr/02-580-0533~4)
+3.대검찰청 인터넷범죄수사센터 (http://icic.sppo.go.kr/02-3480-3600)
+4.경찰청 사이버테러대응센터 (www.ctrc.go.kr/02-392-0330)</textarea>
+												</div>
+												<div class="form-group">
+													<p>개인정보 제3자 제공동의</p>
+													<textarea name="" class="form-control" readonly="">'(주)거제저도유람선'은 (이하 '회사'는) 예약완료 후 이용하는 경우, 원활한 서비스 제공을 위해 관련 정보를 필요범위 내에서 해당 거래 업체에 전달합니다. 
+제공받는자 : 예약된 유람선 또는 관련업체, PG이니시스
+제공목적 : 서비스제공, 구매자확인, 예약 및 개인식별, 결제정보 확인
+제공항목 : 이름, 휴대전화번호, 이메일주소, 결제정보(서비스를 사용했을때만 제공됩니다)
+보유 및 이용기간 : 서비스 제공 완료 후 즉시 파기 (단, 관계 법령상 정해진 기한동안 보존)
+'(주)거제저도유람선'은 이용자의 개인정보를 동의 없이 제3자에게 제공하지 않습니다.
+다만, 다음의 경우는 예외로 합니다. 
+본 웹사이트 이용 약관을 위반 혹은 타인에게 피해를 주는 위법행위를 하는 경우 법적인 조치를 취하기 위해 필요한 개인정보를 공개할 수 있습니다.
+법령의 규정에 의하거나, 수사 목적으로 수사기관의 요청에 의해 법령 상 절차와 방법에 따라 제공할 수 있습니다. 					</textarea>
+												</div>
+												<div class="form-group">
+													<label class="checkbox-inline ticket_text_color">
+														<input type="checkbox" name="agree_chk" id="agree_chk" value="Y"
+															required="" style="height:24px !important;"> 필독사항, 환불규정, 이용자
+														약관에 동의합니다.
+													</label>
+												</div>
+											</div>
+											<div style="height:48px;">
+												<button type="button" id="btnReceipt1"
+													class="btn btn-ticket btn-block white_text" data-toggle="modal"
+													data-target="#privacy_agree">승선권 예약하기</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<!--/ 약관동의 -->
+					<!-- 온라인예약 -->
+					<section id="receiptStepWrap" class="receiptSection" style="display: block;">
+						<div class="sub_title text-center">
+							온라인예약
+						</div>
+						<div class="row">
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 receipt" style="display: block;">
+								<form name="receiptForm" id="receiptForm">
+									<input type="hidden" name="error_return_url"
+										>
+									<input type="hidden" name="act" >
+									<input type="hidden"
+										name="mid" >
+									<input type="hidden" name="vid" >
+									<input type="hidden" name="agree" >
+									<input type="hidden" id="receiptSid" name="receiptSid" value="202211201842240039">
+									<input type="hidden" id="receiptCode" name="receiptCode"
+										value="202212031852-0005-0020">
+									<input type="hidden" id="selectDate" name="selectDate" value="2022-12-03">
+									<input type="hidden" id="courseIdx" name="courseIdx" value="3441">
+									<input type="hidden" id="phoneNumber" name="phoneNumber" value="01012345678">
+
+									<div class="panel panel-default sub_panel">
+										<div class="panel-heading">1. 예약일 선택</div>
+										<div class="panel-body">
+											<div style="height:calc(100% - 134px);">
+												<!-- 캘린더 표시 영역 -->
+												<div id="receiptDate" class="text-center hasDatepicker"
+													style="height:100%;">
+													<div class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"
+														style="display: block;">
+														<div
+															class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all">
+															<a class="ui-datepicker-prev ui-corner-all"
+																data-handler="prev" data-event="click" title="이전달"><span
+																	class="ui-icon ui-icon-circle-triangle-w">이전달</span></a><a
+																class="ui-datepicker-next ui-corner-all"
+																data-handler="next" data-event="click" title="다음달"><span
+																	class="ui-icon ui-icon-circle-triangle-e">다음달</span></a>
+															<div class="ui-datepicker-title"><span
+																	class="ui-datepicker-year">2022</span>년&nbsp;<span
+																	class="ui-datepicker-month">12월</span></div>
+														</div>
+														<table class="ui-datepicker-calendar">
+															<thead>
+																<tr>
+																	<th scope="col" class="ui-datepicker-week-end"><span
+																			title="일요일">일</span></th>
+																	<th scope="col"><span title="월요일">월</span></th>
+																	<th scope="col"><span title="화요일">화</span></th>
+																	<th scope="col"><span title="수요일">수</span></th>
+																	<th scope="col"><span title="목요일">목</span></th>
+																	<th scope="col"><span title="금요일">금</span></th>
+																	<th scope="col" class="ui-datepicker-week-end"><span
+																			title="토요일">토</span></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td
+																		class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">
+																		&nbsp;</td>
+																	<td
+																		class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">
+																		&nbsp;</td>
+																	<td
+																		class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">
+																		&nbsp;</td>
+																	<td
+																		class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">
+																		&nbsp;</td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>1</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>2</a></td>
+																	<td class=" ui-datepicker-week-end  ui-datepicker-current-day"
+																		data-handler="selectDay" data-event="click"
+																		data-month="11" data-year="2022"><a
+																			class="ui-state-default ui-state-active"
+																			>3</a></td>
+																</tr>
+																<tr>
+																	<td class=" ui-datepicker-week-end "
+																		data-handler="selectDay" data-event="click"
+																		data-month="11" data-year="2022"><a
+																			class="ui-state-default"
+																			>4</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>5</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>6</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>7</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>8</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>9</a></td>
+																	<td class=" ui-datepicker-week-end "
+																		data-handler="selectDay" data-event="click"
+																		data-month="11" data-year="2022"><a
+																			class="ui-state-default"
+																			>10</a></td>
+																</tr>
+																<tr>
+																	<td class=" ui-datepicker-week-end "
+																		data-handler="selectDay" data-event="click"
+																		data-month="11" data-year="2022"><a
+																			class="ui-state-default"
+																			>11</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>12</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>13</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>14</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>15</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>16</a></td>
+																	<td class=" ui-datepicker-week-end "
+																		data-handler="selectDay" data-event="click"
+																		data-month="11" data-year="2022"><a
+																			class="ui-state-default"
+																			>17</a></td>
+																</tr>
+																<tr>
+																	<td class=" ui-datepicker-week-end "
+																		data-handler="selectDay" data-event="click"
+																		data-month="11" data-year="2022"><a
+																			class="ui-state-default"
+																			>18</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>19</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>20</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>21</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>22</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>23</a></td>
+																	<td class=" ui-datepicker-week-end "
+																		data-handler="selectDay" data-event="click"
+																		data-month="11" data-year="2022"><a
+																			class="ui-state-default"
+																			>24</a></td>
+																</tr>
+																<tr>
+																	<td class=" ui-datepicker-week-end "
+																		data-handler="selectDay" data-event="click"
+																		data-month="11" data-year="2022"><a
+																			class="ui-state-default"
+																			>25</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>26</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>27</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>28</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>29</a></td>
+																	<td class=" " data-handler="selectDay"
+																		data-event="click" data-month="11"
+																		data-year="2022"><a class="ui-state-default"
+																			>30</a></td>
+																	<td class=" ui-datepicker-week-end "
+																		data-handler="selectDay" data-event="click"
+																		data-month="11" data-year="2022"><a
+																			class="ui-state-default"
+																			>31</a></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<!--/ 캘린더 표시 영역 -->
+											</div>
+											<div class="calendar_legend text-right">
+												<ul class="no-margin no-padding list-unstyled"
+													style="display:inline-block;">
+													<!-- <li class="pull-left"><span class="ex_span" style="border:2px solid #06abba;">비수기</span></li> -->
+													<li class="pull-left"><span class="ex_span" style="	border: 2px solid #f65579; background-color: #f65579; color: white; font-weight: bold;">주말<br>공휴일</span></li>
+													<!-- <li class="pull-left"><span class="ex_span" style="border:2px solid #63C">성수기</span></li> -->
+													<li class="pull-left"><span class="ex_span" style="border:2px solid #777;    background-color: #777;color: white;font-weight: bold;">예약<br>불가</span></li>
+												</ul>
+											</div>
+											<div class="text-center" style="padding:0; height:42px; line-height:42px;">
+												<strong class="ticket_text_color"
+													style="padding-right:15px;">예약일</strong>
+												<strong><span id="selectVdate">2022년 12월 03일(토요일)</span></strong>
+											</div>
+											<div>
+												<button type="button" id="btnReceipt2"
+													class="btn btn-ticket btn-block white_text"
+													onclick="receiptStep(1);">코스 및 시간 선택</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+
+							<!-- 2. 코스 및 시간 선택 -->
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 receipt" style="display: block;">
+								<div class="panel panel-default sub_panel">
+									<div class="panel-heading">2. 코스 및 시간 선택</div>
+									<div class="panel-body" style="padding:0 15px 15px 15px;">
+										<div style="height:calc(100% - 48px); overflow:auto; margin:0 -15px;">
+											<div class="ticket_course_wrap">
+												<div class="ticket_course_box">
+													<div class="ticket_list active" data-id="3441">
+														<!--<div class="ticket_list click_disabled" data-id="3441">-->
+														<div class="ticket_time greenBg text-center">
+															10:00<br>출항
+														</div>
+														<div class="ticket_course">
+															1항차 (100명 예약가능)<br><span
+																class="ticket_text_color">저도입도코스</span>
+														</div>
+													</div>
+													<div class="ticket_detail" style="display: block;">
+														티켓팅 마감시간 : <span class="red_emphasis_text">09:30</span><br>
+														※ 티켓팅마감시간 경과 후 발권불가/자동취소(환불불가)<br>
+
+														코스1 : 궁농항 출발 → 한화리조트 → 거가대교 3주탑 → 저도입도(1시간 30분) → 저도항 출발 → 거가대교
+														2주탑 → 중죽도, 대죽도 → 궁농항도착 (2시간 30분 소요)
+													</div>
+												</div>
+											</div>
+											<div class="ticket_course_wrap">
+												<div class="ticket_course_box">
+													<div class="ticket_list" data-id="3442">
+														<!--<div class="ticket_list click_disabled" data-id="3442">-->
+														<div class="ticket_time greenBg text-center">
+															14:00<br>출항
+														</div>
+														<div class="ticket_course">
+															2항차 (100명 예약가능)<br><span
+																class="ticket_text_color">저도입도코스</span>
+														</div>
+													</div>
+													<div class="ticket_detail" style="display: none;">
+														티켓팅 마감시간 : <span class="red_emphasis_text">13:30</span><br>
+														※ 티켓팅마감시간 경과 후 발권불가/자동취소(환불불가)<br>
+
+														코스1 : 궁농항 출발 → 한화리조트 → 거가대교 3주탑 → 저도입도(1시간 30분) → 저도항 출발 → 거가대교
+														2주탑 → 중죽도, 대죽도 → 궁농항도착 (2시간 30분 소요)
+													</div>
+												</div>
+											</div>
+										</div>
+										<div>
+											<button type="button" id="btnReceipt3"
+												class="btn btn-ticket btn-block white_text"
+												onclick="receiptStep(2);">예약인원 선택</button>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+							<!-- 3. 예약인원 선택 -->
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 receipt" style="display: block;">
+								<div class="panel panel-default sub_panel">
+									<div class="panel-heading">3. 예약인원 선택</div>
+									<div class="panel-body" style="padding:0 15px 15px 15px;">
+										<div style="height:calc(100% - 48px); overflow:auto; display: flex; flex-direction: column; justify-content: space-between;">
+											<form name="amountForm" id="amountForm" data-qty="100">
+												<table class="table priceTable" style="margin-bottom:15px;">
+													<colgroup>
+														<col width="95">
+														<col width="*">
+														<col width="155">
+														<col width="*">
+													</colgroup>
+													<tbody>
+														<tr>
+															<td class="text-center">대인 </td>
+															<td>
+																<input type="text" name="qty1" value="0"
+																	class="form-control text-center" readonly=""
+																	style="display:inline-block; width:30px;">
+																<input type="hidden" name="price1" value="21000">
+																<input type="hidden" name="custPrice1" value="19000">
+															</td>
+															<td>
+																× 19,000원 = <span class="qty-price">0</span>원<br>
+																<!-- <s style="color:#999;">× 21,000원 = <span class="qty-cust-price">0</span>원</s> -->
+															</td>
+															<td class="text-right">
+																<button type="button"
+																	class="btn conceptBgColor no-padding btn-volume"
+																	data-id="plus"
+																	style="width:24px; height:24px !important;">
+																	<i class="fa fa-plus"></i>
+																</button>
+																<button type="button" class="btn no-padding btn-volume"
+																	data-id="minus"
+																	style="width:24px; height:24px !important;">
+																	<i class="fa fa-minus"></i>
+																</button>
+															</td>
+														</tr>
+														<tr>
+															<td class="text-center">중고생 </td>
+															<td>
+																<input type="text" name="qty2" value="0"
+																	class="form-control text-center" readonly=""
+																	style="display:inline-block; width:30px;">
+																<input type="hidden" name="price2" value="21000">
+																<input type="hidden" name="custPrice2" value="19000">
+															</td>
+															<td>
+																× 19,000원 =
+																<span class="qty-price">0</span>원<br>
+																<!-- <s style="color:#999;">× 21,000원 = <span class="qty-cust-price">0</span>원</s> -->
+															</td>
+															<td class="text-right">
+																<button type="button"
+																	class="btn conceptBgColor no-padding btn-volume"
+																	data-id="plus"
+																	style="width:24px; height:24px !important;">
+																	<i class="fa fa-plus"></i>
+																</button>
+																<button type="button" class="btn no-padding btn-volume"
+																	data-id="minus"
+																	style="width:24px; height:24px !important;">
+																	<i class="fa fa-minus"></i>
+																</button>
+															</td>
+														</tr>
+														<tr>
+															<td class="text-center">
+																소인 <br>(24개월~초등) </td>
+															<td>
+																<input type="text" name="qty3" value="0"
+																	class="form-control text-center" readonly=""
+																	style="display:inline-block; width:30px;">
+																<input type="hidden" name="price3" value="15000">
+																<input type="hidden" name="custPrice3" value="15000">
+															</td>
+															<td>
+																× 15,000원 = <span class="qty-price">0</span>원<br>
+																<!-- <s style="color:#999;">× 15,000원 = <span class="qty-cust-price">0</span>원</s> -->
+															</td>
+															<td class="text-right">
+																<button type="button"
+																	class="btn conceptBgColor no-padding btn-volume"
+																	data-id="plus"
+																	style="width:24px; height:24px !important;">
+																	<i class="fa fa-plus"></i>
+																</button>
+																<button type="button" class="btn no-padding btn-volume"
+																	data-id="minus"
+																	style="width:24px; height:24px !important;">
+																	<i class="fa fa-minus"></i>
+																</button>
+															</td>
+														</tr>
+														<tr>
+															<td class="text-center">
+																유아 <br>(24개월 미만) </td>
+															<td>
+																<input type="text" name="qty4" value="0"
+																	class="form-control text-center" readonly=""
+																	style="display:inline-block; width:30px;">
+																<input type="hidden" name="price4" value="0">
+																<input type="hidden" name="custPrice4" value="0">
+															</td>
+															<td>
+																× 0원 =
+																<span class="qty-price">0</span>원<br>
+																<!-- <s style="color:#999;">× 0원 = <span class="qty-cust-price">0</span>원</s> -->
+															</td>
+															<td class="text-right">
+																<button type="button"
+																	class="btn conceptBgColor no-padding btn-volume"
+																	data-id="plus"
+																	style="width:24px; height:24px !important;">
+																	<i class="fa fa-plus"></i>
+																</button>
+																<button type="button" class="btn no-padding btn-volume"
+																	data-id="minus"
+																	style="width:24px; height:24px !important;">
+																	<i class="fa fa-minus"></i>
+																</button>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</form>
+											<div class="panel panel-default" style="border:1px solid #29508b ;">
+												<div class="panel-heading conceptBgColor">결제하실 금액</div>
+												<div class="panel_body" style="padding:5px 15px;">
+													<div style="padding-bottom: 5px;">
+														결제금액
+														<span class="pull-right paymentPrice">0원</span><br>
+														<!-- <span class="pull-right amountPrice">0원</span><br> -->
+														<!-- <span class="red_emphasis_text">예약할인금액 <span class="pull-right salePrice">0원</span></span> -->
+													</div>
+													<div class="text-right no-margin sub_title red_emphasis_text paymentPrice"
+														style="padding:10px 0; border-top:1px solid #ddd;">
+														0원
+													</div>
+												</div>
+											</div>
+										</div>
+										<div>
+											<button type="button" id="btnReceipt4"
+												class="btn btn-ticket btn-block white_text" disabled=""
+												onclick="receiptStep(3);">예약자 정보 입력</button>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							
+
+							<!-- 4. 예약자 정보 입력 -->
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 receipt" style="display: block;">
+								<div class="panel panel-default sub_panel">
+									<div class="panel-heading">4. 예약자 정보 입력</div>
+									<div class="panel-body" >
+										<div style="height:calc(100% - 48px);">
+											<form name="customerForm" id="customerForm">
+												<table class="table">
+													<colgroup>
+														<col width="80">
+														<col width="*">
+													</colgroup>
+													<tbody>
+														<tr>
+															<th style="padding-top: 0;">예약자명</th>	
+															<td style="padding-top: 0;"><input type="text" name="cName" 
+																	class="form-control customerVal"
+																	></td>
+														</tr>
+														<tr>
+															<th>휴대폰</th>
+															<td>
+																<select name="cPhone1" class="form-control customerVal"
+																	style="display:inline-block; width:30%;">
+																	<option value="010" selected="">010</option>
+																	<option value="011">011</option>
+																	<option value="016">016</option>
+																	<option value="017">017</option>
+																	<option value="018">018</option>
+																	<option value="019">019</option>
+																</select>
+																-
+																<input type="text" name="cPhone2" 
+																	class="form-control text-center customerVal"
+																	style="display:inline-block; width:30%;">
+																-
+																<input type="text" name="cPhone3" 
+																	class="form-control text-center customerVal"
+																	style="display:inline-block; width:30%;">
+															</td>
+														</tr>
+														<tr>
+															<th>이메일</th>
+															<td>
+																<div style="margin-bottom:5px;">
+																	<input type="text" name="cMailID" 
+																		class="form-control customerVal"
+																		style="display:inline-block; width:85%;margin-right: 10px;"> @
+																</div>
+																<div style="margin-bottom:5px;">
+																	<input type="text" name="cMailDomain" 
+																		class="form-control customerVal"
+																		style="display:inline-block;">
+																</div>
+																<select name="tMail_Domain"
+																	class="form-control customerVal"
+																	onchange="eMailChange(jQuery(this));">
+																	<option value="no">직접입력</option>
+																	<option value="gmail.com">gmail.com</option>
+																	<option value="naver.com">naver.com</option>
+																	<option value="nate.com">nate.com</option>
+																	<option value="daum.net">daum.net</option>
+																	<option value="hanmail.net">hanmail.net</option>
+																</select>
+															</td>
+														</tr>
+														<tr style="border-bottom:1px solid #ddd;">
+															<th>비상<br>연락처</th>
+															<td>
+																<select name="emPhone1" class="form-control customerVal"
+																	style="display:inline-block; width:30%;">
+																	<option value="010" selected="">010</option>
+																	<option value="011">011</option>
+																	<option value="016">016</option>
+																	<option value="017">017</option>
+																	<option value="018">018</option>
+																	<option value="019">019</option>
+																</select>
+																-
+																<input type="text" name="emPhone2" 
+																	class="form-control text-center customerVal"
+																	style="display:inline-block; width:30%;">
+																-
+																<input type="text" name="emPhone3" 
+																	class="form-control text-center customerVal"
+																	style="display:inline-block; width:30%;">
+															</td>
+														</tr>
+														<tr>
+															<th>예약<br>비밀번호</th>
+															<td>
+																<input type="number" name="cPassword" 
+																placeholder="4자리 숫자"
+																class="form-control customerVal" >
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</form>
+											<!-- <div>
+												<span class="red_emphasis_text">승선 하루 전, 당일 등 공지사항이 발생하는 경우</span> 예약자
+												휴대폰으로 문자가 상시 전송되오니 연락이 가능한 상태를 유지하여 주시기 바랍니다.
+											</div> -->
+										</div>
+										<div>
+											<button type="button" id="btnReceipt6"
+												class="btn btn-ticket btn-block white_text" disabled="disabled"
+												onclick="saveCustomer(&#39;Y&#39;);">결제 선택</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- 5. 결제 선택 -->
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 receipt" style="display: block;">
+								<div class="panel panel-default sub_panel">
+									<div class="panel-heading">5. 결제 선택</div>
+									<div class="panel-body">
+										<div style="height:calc(100% - 48px);">
+											<div class="form-group text-center">
+												
+												<form name="phoneForm" id="phoneForm">
+													<table class="table">
+														<colgroup>
+															<col width="80">
+															<col width="*">
+														</colgroup>
+														<tbody>
+															<tr>
+																<th style="padding-top: 0;">결제 방법</th>
+																<td style="padding-top: 0;">
+																	<select name="tMail_Domain"
+																		class="form-control customerVal"
+																		onchange="eMailChange(jQuery(this));">
+																		<option value="1">신용카드</option>
+																		<option value="2">계좌이체</option>
+																	</select>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+													
+												</form>
+											</div>
+										</div>
+										<div>
+											<button type="button" id="btnReceipt5"
+												class="btn btn-ticket btn-block white_text"
+												onclick="receiptStep(4);">결제하기</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+							<!-- 6. 예약 확인 -->
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 receipt" style="display: block;">
+								<div class="panel panel-default sub_panel">
+									<div class="panel-heading">6. 예약 확인</div>
+									<div class="panel-body">
+										<div style="height:calc(100% - 48px);">
+											<form name="customerForm" id="customerForm">
+												<table class="table" style="margin-bottom: 10px;">
+													<colgroup>
+														<col width="27%">
+														<col width="*">
+													</colgroup>
+													<tbody>
+														<tr>
+															<th style="padding-top: 0;">출발일</th>
+															<td style="padding-top: 0;">
+																
+																<input type="hidden" name="cName" class="form-control customerVal">
+															</td>
+														</tr>
+														<tr>
+															<th style="letter-spacing: -1px;">코스 및 시간</th>
+															<td>
+																
+																<input type="hidden" name="cName" class="form-control customerVal">
+															</td>
+														</tr>
+														<tr>
+															<th>인원</th>
+															<td>
+																
+																<input type="hidden" name="cName" 
+																	class="form-control customerVal"></td>
+														</tr>
+														<tr>
+															<th>예약자명</th>
+															<td>
+																
+																<input type="hidden" name="cName" 
+																	class="form-control customerVal"></td>
+														</tr>
+														<tr>
+															<th>휴대폰</th>
+															<td>
+																01012345678
+																<input type="hidden" name="cPhone" 
+																	class="form-control text-center customerVal">
+															</td>
+														</tr>
+														<tr>
+															<th>이메일</th>
+															<td>
+																test@naver.com
+																	<input type="hidden" name="cMailID" 
+																		class="form-control customerVal">
+															</td>
+														</tr>
+														<tr style="border-bottom:1px solid #ddd;">
+															<th style="letter-spacing: -1px;">비상 연락처</th>
+															<td>01012345678</td>
+															<input type="hidden" name="emPhone" 
+																	class="form-control text-center customerVal">
+																	
+														</tr>
+													</tbody>
+												</table>
+											</form>
+											<div style="font-size: 14px; line-height: 18px;">
+												<span class="red_emphasis_text">승선 하루 전, 당일 등 공지사항이 발생하는 경우</span> 예약자
+												휴대폰으로 문자가 상시 전송되오니 연락이 가능한 상태를 유지하여 주시기 바랍니다.
+											</div>
+										</div>
+										<div>
+											<button type="button" id="btnReceipt6"
+												class="btn btn-ticket btn-block white_text" disabled="disabled"
+												onclick="saveCustomer(&#39;Y&#39;);">결제 선택</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<!--/ 온라인예약 -->
+					<section id="receiptResult" class="receiptSection" style="display:none;"></section>
+					<!-- JavaScripts -->
+					<script type="text/javascript" src="./js/pages.js"></script>
+					<script type="text/javascript">
+						$(document).ready(function () {
+							// 초기 화면
+							//prevCheckCart();
+						}); 					</script>
+					<!-- 온라인 예약 첫 알림 창 -->
+					<script type="text/javascript">
+						$(document).ready(function () {
+							ajax_error('온라인 예약은 신용카드 결제만 가능합니다.<br />현금 또는 무통장입금을 원하시면 선사로 연락 주시기 바랍니다.<br />문의 : 1668-2240 (거제저도유람선)');
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<!--/ Sub Contents -->
+	</section>
+	<!-- JavaScripts -->
+	<script type="text/javascript">
+		// Swiper
+		var swiper = new Swiper('.swiper-container', {
+			slidesPerView: 1,
+			spaceBetween: 0,
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			loop: true,
+			autoplay: {
+				delay: 5000,
+				disableOnInteraction: false,
+			},
+		});
+		// 모바일 메뉴 호출
+		(function ($) {
+			$(document).ready(function () {
+				$('nav#menu').mmenu({
+					slidingSubmenus: false,
+					extensions: ['theme-white']
+				});
+			});
+		})(jQuery);
+	// 모바일 메뉴 호출 끝
+	</script>
+	<!-- JavaScripts 끝 -->
+	<script type="text/javascript">//<![CDATA[
+		var msg_popup_do_not_display = '%d일 동안 다시보지 않기';
+		jQuery(function () {
+		});
+//]]></script>
+	<!-- ETC -->
+	<div class="mm-page">
+		<div class="wfsr"></div>
+		<div id="topcontrol" title="Scroll Back to Top"
+			style="position: fixed; bottom: 300px; right: -5px; opacity: 1; cursor: pointer;"><i
+				class="fa fa-chevron-up scrolltotop rounded"></i></div>
+	</div>
+	<script src="./js/autolink.js"></script>
+	<script src="./js/jquery-ui.min.js"></script>
+	<script src="./js/jquery.ui.datepicker-ko.js"></script>
+	<script src="./js/resize_image.min.js"></script>
+
+	<div id="mm-blocker"></div>
+	<div id="popup_menu_area" tabindex="0" style="display:none;z-index:9999"></div>
+	<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
+	</div>
+</body>
+
+</html>

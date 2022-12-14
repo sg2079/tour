@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+    <!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>해마_일정</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+
+        <!-- Following CSS is used only fore demo purposes thus you can remove anytime -->
+        <link href="css/demo.css" rel="stylesheet">
+    </head>
+
+    <body data-ma-header="teal">
+        <!--#include virtual = "/manage/inc/header.asp"--> 
+
+        <section id="main">
+            <!--#include virtual = "/manage/inc/aside.asp"--> 
+
+            <section id="content">
+                <div class="container c-boxed">
+                  <!--   <div class="c-header">
+                        <h2>Calendar <small>FullCalendar is a jQuery plugin that provides a full-sized, drag & drop event calendar like the one below.</small></h2>
+                    </div> -->
+
+                    <div id="calendar" class="card"></div>
+
+                    <!-- Add event -->
+                        <div class="modal fade" id="addNew-event" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">일정 추가하기</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="addEvent" role="form">
+                                            <div class="form-group">
+                                                <label for="eventName">일정명</label>
+                                                <div class="fg-line">
+                                                    <input type="text" class="input-sm form-control" id="eventName" placeholder="입력하세요.">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="eventName">색상</label>
+                                                <div class="event-tag">
+                                                    <span data-tag="palette-Teal bg" class="palette-Teal bg selected"></span>
+                                                    <span data-tag="palette-Red bg" class="palette-Red bg"></span>
+                                                    <span data-tag="palette-Pink bg" class="palette-Pink bg"></span>
+                                                    <span data-tag="palette-Blue bg" class="palette-Blue bg"></span>
+                                                    <span data-tag="palette-Lime bg" class="palette-Lime bg"></span>
+                                                    <span data-tag="palette-Green bg" class="palette-Green bg"></span>
+                                                    <span data-tag="palette-Cyan bg" class="palette-Cyan bg"></span>
+                                                    <span data-tag="palette-Orange bg" class="palette-Orange bg"></span>
+                                                    <span data-tag="palette-Purple bg" class="palette-Purple bg"></span>
+                                                    <span data-tag="palette-Gray bg" class="palette-Grey bg"></span>
+                                                    <span data-tag="palette-Black bg" class="palette-Black bg"></span>
+                                                </div>
+                                            </div>
+
+                                            <input type="hidden" id="getStart" />
+                                            <input type="hidden" id="getEnd" />
+                                        </form>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary btn-sm" id="addEvent">추가하기</button>
+                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </section>
+
+          <!--#include virtual = "/manage/inc/footer.asp"--> 
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">Warning!!</h1>
+            <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+            <div class="iew-container">
+                <ul class="iew-download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="img/browsers/chrome.png" alt="">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="img/browsers/firefox.png" alt="">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="img/browsers/opera.png" alt="">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="img/browsers/safari.png" alt="">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="img/browsers/ie.png" alt="">
+                            <div>IE (New)</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>Sorry for the inconvenience!</p>
+        </div>
+        <![endif]-->
+
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <!-- 캘린더 -->
+        <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+        <script src="js/demo.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var date = new Date();
+                var d = date.getDate();
+                var m = date.getMonth();
+                var y = date.getFullYear();
+
+                var cId = $('#calendar'); //원하는경우 이름 바꿔두댐
+
+                //달력일정
+                cId.fullCalendar({
+                    header: {
+                        right: '',
+                        center: 'prev, title, next',
+                        left: ''
+                    },
+
+                    theme: true, //Do not remove this as it ruin the design
+                    selectable: true,
+                    selectHelper: true,
+                    editable: true,
+
+                    //이벤트추가~
+                  /*   events: [
+                        {
+                            title: 'Hangout with friends',
+                            start: new Date(y, m, 1),
+                            allDay: true,
+                            className: 'palette-Cyan bg'
+                        },
+                        {
+                            title: 'Meeting with client',
+                            start: new Date(y, m, 10),
+                            allDay: true,
+                            className: 'palette-Orange bg'
+                        },
+                        {
+                            title: 'Repeat Event',
+                            start: new Date(y, m, 18),
+                            allDay: true,
+                            className: 'palette-Amber bg'
+                        },
+                        {
+                            title: 'Semester Exam',
+                            start: new Date(y, m, 20),
+                            allDay: true,
+                            className: 'palette-Green bg'
+                        },
+                        {
+                            title: 'Soccor match',
+                            start: new Date(y, m, 5),
+                            allDay: true,
+                            className: 'palette-Light-Blue bg'
+                        },
+                        {
+                            title: 'Coffee time',
+                            start: new Date(y, m, 21),
+                            allDay: true,
+                            className: 'palette-Orange bg'
+                        },
+                        {
+                            title: 'Job Interview',
+                            start: new Date(y, m, 5),
+                            allDay: true,
+                            className: 'palette-Amber bg'
+                        },
+                        {
+                            title: 'IT Meeting',
+                            start: new Date(y, m, 5),
+                            allDay: true,
+                            className: 'palette-Green bg'
+                        },
+                        {
+                            title: 'Brunch at Beach',
+                            start: new Date(y, m, 1),
+                            allDay: true,
+                            className: 'palette-Blue bg'
+                        },
+                        {
+                            title: 'Live TV Show',
+                            start: new Date(y, m, 15),
+                            allDay: true,
+                            className: 'palette-Cyan bg'
+                        },
+                        {
+                            title: 'Software Conference',
+                            start: new Date(y, m, 25),
+                            allDay: true,
+                            className: 'palette-Blue bg'
+                        },
+                        {
+                            title: 'Coffee time',
+                            start: new Date(y, m, 30),
+                            allDay: true,
+                            className: 'palette-Orange bg'
+                        },
+                        {
+                            title: 'Job Interview',
+                            start: new Date(y, m, 30),
+                            allDay: true,
+                            className: 'palette-Green bg'
+                        },
+                    ],
+ */
+                    //On Day Select
+                    select: function(start, end, allDay) {
+                        $('#addNew-event').modal('show');
+                        $('#addNew-event input:text').val('');
+                        $('#getStart').val(start);
+                        $('#getEnd').val(end);
+                    }
+                });
+
+                //Create and ddd Action button with dropdown in Calendar header.
+                var actionMenu = '<ul class="actions actions-alt" id="fc-actions">' +
+                        '<li class="dropdown">' +
+                        '<a href="" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a>' +
+                        '<ul class="dropdown-menu">' +
+                        '<li class="active">' +
+                        '<a data-view="month" href="">Month View</a>' +
+                        '</li>' +
+                        '<li>' +
+                        '<a data-view="basicWeek" href="">Week View</a>' +
+                        '</li>' +
+                        '<li>' +
+                        '<a data-view="agendaWeek" href="">Agenda Week View</a>' +
+                        '</li>' +
+                        '<li>' +
+                        '<a data-view="basicDay" href="">Day View</a>' +
+                        '</li>' +
+                        '<li>' +
+                        '<a data-view="agendaDay" href="">Agenda Day View</a>' +
+                        '</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '</li>';
+
+
+                cId.find('.fc-toolbar').append(actionMenu);
+
+                //이벤트색상
+                (function(){
+                    $('body').on('click', '.event-tag > span', function(){
+                        $('.event-tag > span').removeClass('selected');
+                        $(this).addClass('selected');
+                    });
+                })();
+
+                //이벤트추가
+                $('body').on('click', '#addEvent', function(){
+                    var eventName = $('#eventName').val();
+                    var tagColor = $('.event-tag > span.selected').attr('data-tag');
+
+                    if (eventName != '') {
+                        //Render Event
+                        $('#calendar').fullCalendar('renderEvent',{
+                            title: eventName,
+                            start: $('#getStart').val(),
+                            end:  $('#getEnd').val(),
+                            allDay: true,
+                            className: tagColor
+
+                        },true ); //Stick the event
+
+                        $('#addNew-event form')[0].reset()
+                        $('#addNew-event').modal('hide');
+                    }
+
+                    else {
+                        $('#eventName').closest('.form-group').addClass('has-error');
+                    }
+                });
+
+                //캘린더
+                $('body').on('click', '#fc-actions [data-view]', function(e){
+                    e.preventDefault();
+                    var dataView = $(this).attr('data-view');
+
+                    $('#fc-actions li').removeClass('active');
+                    $(this).parent().addClass('active');
+                    cId.fullCalendar('changeView', dataView);
+                });
+            });
+        </script>
+    </body>
+</html>

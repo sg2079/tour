@@ -1,0 +1,934 @@
+<!--#include virtual = "/inc/dbconfig.asp"--> 
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>해마_상품등록</title>
+
+    <!-- Vendor CSS -->
+    <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+    <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+        
+    <!-- CSS -->
+    <link href="css/app.min.1.css" rel="stylesheet">
+    <link href="css/app.min.2.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/common/css/reset.css">
+    <link rel="stylesheet" href="css/common/css/fonts.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
+    <link rel="stylesheet" href="css/insert.css">
+    <link rel="stylesheet" href="css/easybooking.css">
+
+    <!-- daum map (주소찾기) -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <!-- kakao map -->
+
+    <!--      
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08830e6c428270a176beb380a21babdf&libraries=services"></script>
+    -->
+    <script src="css/common/plugins/jQuery/jquery-3.6.0.min.js"></script>  
+   <!--  <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            buildCalendar();
+        });
+
+        var today = new Date(); // @param 전역 변수, 오늘 날짜 / today에 Date 객체를 넣어줌
+        var date = new Date();  // @param 전역 변수, today의 Date를 세어주는 역할
+
+        /**
+         * @brief   이전달 버튼 클릭
+         */
+        function prevCalendar() {
+            this.today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+            buildCalendar();    // @param 전월 캘린더 출력 요청
+        }
+
+        /**
+         * @brief   다음달 버튼 클릭
+         */
+        function nextCalendar() {
+            this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+            buildCalendar();    // @param 명월 캘린더 출력 요청
+        }
+
+        /**
+         * @brief   캘린더 오픈
+         * @details 날짜 값을 받아 캘린더 폼을 생성하고, 날짜값을 채워넣는다.
+         */
+        function buildCalendar() {
+
+            let doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+            let lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+            let tbCalendar = document.querySelector(".scriptCalendar > tbody");
+
+            // @param YYYY월
+            document.getElementById("calYear").innerText = today.getFullYear();                       
+            // @param MM월
+            document.getElementById("calMonth").innerText = autoLeftPad((today.getMonth() + 1), 2);   
+
+
+            // @details 이전 캘린더의 출력결과가 남아있다면, 이전 캘린더를 삭제한다.
+            while (tbCalendar.rows.length > 0) {
+                tbCalendar.deleteRow(tbCalendar.rows.length - 1);
+            }
+
+
+            // @param 첫번째 개행
+            let row = tbCalendar.insertRow();
+
+            // @param 날짜가 표기될 열의 증가값
+            let dom = 1;
+
+            // @details 시작일의 요일값( doMonth.getDay() ) + 해당월의 전체일( lastDate.getDate())을  더해준 값에서
+            //               7로 나눈값을 올림( Math.ceil() )하고 다시 시작일의 요일값( doMonth.getDay() )을 빼준다.
+            let daysLength = (Math.ceil((doMonth.getDay() + lastDate.getDate()) / 7) * 7) - doMonth.getDay();
+
+            // @param 달력 출력
+            // @details 시작값은 1일을 직접 지정하고 요일값( doMonth.getDay() )를 빼서 마이너스( - )로 for문을 시작한다.
+            for (let day = 1 - doMonth.getDay(); daysLength >= day; day++) {
+
+                let column = row.insertCell();
+
+                // @param 평일( 전월일과 익월일의 데이터 제외 )
+                if (Math.sign(day) == 1 && lastDate.getDate() >= day) {
+
+                    // @param 평일 날짜 데이터 삽입
+
+                    column.innerText = autoLeftPad(day, 2);
+
+                    // @param 일요일인 경우
+                    if (dom % 7 == 1) {
+                        column.style.color = "#FF4D4D";
+                    }
+
+                    // @param 토요일인 경우
+                    if (dom % 7 == 0) {
+                        column.style.color = "#4D4DFF";
+                        row = tbCalendar.insertRow();   // @param 토요일이 지나면 다시 가로 행을 한줄 추가한다.
+                    }
+
+                }
+
+                // @param 평일 전월일과 익월일의 데이터 날짜변경
+                else {
+                    let exceptDay = new Date(doMonth.getFullYear(), doMonth.getMonth(), day);
+                    column.innerText = autoLeftPad(exceptDay.getDate(), 2);
+                    column.style.color = "#A9A9A9";
+                }
+
+                // @brief   전월, 명월 음영처리
+                // @details 현재년과 선택 년도가 같은경우
+                if (today.getFullYear() == date.getFullYear()) {
+
+                    // @details 현재월과 선택월이 같은경우
+                    if (today.getMonth() == date.getMonth()) {
+
+                        // @details 현재일보다 이전인 경우이면서 현재월에 포함되는 일인경우
+                        if (date.getDate() > day && Math.sign(day) == 1) {
+                            column.style.backgroundColor = "#E5E5E5";
+                        }
+
+                        // @details 현재일보다 이후이면서 현재월에 포함되는 일인경우
+                        else if (date.getDate() < day && lastDate.getDate() >= day) {
+                            column.style.backgroundColor = "#FFFFFF";
+                            column.style.cursor = "pointer";
+                            column.onclick = function () { calendarChoiceDay(this); }
+                        }
+
+                        // @details 현재일인 경우
+                        else if (date.getDate() == day) {
+                            column.style.backgroundColor = "#FFFFE6";
+                            column.style.cursor = "pointer";
+                            column.onclick = function () { calendarChoiceDay(this); }
+                        }
+
+                        // @details 현재월보다 이전인경우
+                    } else if (today.getMonth() < date.getMonth()) {
+                        if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                            column.style.backgroundColor = "#E5E5E5";
+                        }
+                    }
+
+                    // @details 현재월보다 이후인경우
+                    else {
+                        if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                            column.style.backgroundColor = "#FFFFFF";
+                            column.style.cursor = "pointer";
+                            column.onclick = function () { calendarChoiceDay(this); }
+                        }
+                    }
+                }
+
+                // @details 선택한년도가 현재년도보다 작은경우
+                else if (today.getFullYear() < date.getFullYear()) {
+                    if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                        column.style.backgroundColor = "#E5E5E5";
+                    }
+                }
+
+                // @details 선택한년도가 현재년도보다 큰경우
+                else {
+                    if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                        column.style.backgroundColor = "#FFFFFF";
+                        column.style.cursor = "pointer";
+                        column.onclick = function () { calendarChoiceDay(this); }
+                    }
+                }
+
+                dom++;
+
+            }
+        }
+
+        /**
+         * @brief   날짜 선택
+         * @details 사용자가 선택한 날짜에 체크표시를 남긴다.
+         */
+        function calendarChoiceDay(column) {
+
+            // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
+            if (document.getElementsByClassName("choiceDay")[0]) {
+                document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+                document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
+            }
+
+            // @param 선택일 체크 표시
+            column.style.backgroundColor = "#FF9999";
+
+
+            // @param 선택일 클래스명 변경
+            column.classList.add("choiceDay");
+        }
+
+        /**
+         * @brief   숫자 두자릿수( 00 ) 변경
+         * @details 자릿수가 한자리인 ( 1, 2, 3등 )의 값을 10, 11, 12등과 같은 두자리수 형식으로 맞추기위해 0을 붙인다.
+         * @param   num     앞에 0을 붙일 숫자 값
+         * @param   digit   글자의 자릿수를 지정 ( 2자릿수인 경우 00, 3자릿수인 경우 000 … )
+         */
+        function autoLeftPad(num, digit) {
+            if (String(num).length < digit) {
+                num = new Array(digit - String(num).length + 1).join("0") + num;
+            }
+            return num;
+        }
+    </script> -->
+</head>
+
+<body data-ma-header="teal">
+    <!--#include virtual = "/manage/inc/header.asp"--> 
+
+    <section id="main">
+        <!--#include virtual = "/manage/inc/aside.asp"--> 
+
+
+        <section id="content">
+            <div class="container">
+                <!-- <div class="c-header">
+                    <h2>Table</h2>
+                </div> -->
+
+                <div class="card">
+
+                    <div class="card-header">
+<!--                         <h2>상품 등록<small></small></h2>
+ -->                    </div>
+
+
+                    <div class="wrap">
+
+                        <!-- 탭 -->
+                       <!--  <div class="list" >
+                            <ul class="tabs">
+                                <li class="on" id="tabli1" style="border-right: 0;"><a href="#tab1">상품정보</a></li>
+                                <li id="tabli12"><a  href="#tab2">일정/가격</a></li>
+                            </ul>
+                        </div> -->
+
+                        <div id="tab1" class="serrvice_wrapper">
+                            
+                           <!-- 업체명 -->
+                            <!-- <div class="store_select_wrapper">
+                                <select name="" id="">
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </div> -->
+
+                            <div class="service_info_wrapper">
+                                <div class="service_info_title">
+                                    <span></span>
+                                    <span class="require"><i class="xi-check "></i>필수입력</span>
+                                </div>
+
+                                <!-- 예약상품명 -->
+                                <div class="input_wrapper">
+                                    <span class="require"><i class="xi-check "></i>예약 상품명</span>
+                                    <div class="info_input">
+                                        <input  name="name" type="text" class="limit" placeholder="예약 상품명을 입력해주세요." maxlength="30" >
+                                        <span><span class="char_num">0</span>자<span class="limit_cnt"> / 30자</span></span>
+                                    </div>
+                                </div>
+
+                                <!-- 예약상품소개 -->
+                                <div class="input_wrapper">
+                                    <span>예약 상품 소개</span>
+                                    <div class="info_input">
+                                        <textarea maxlength="1000" minlength="20" name="desc" id="desc" cols="30" rows="10" class="limit" placeholder="예약 상품 소개를 입력해주세요."></textarea>
+                                        <span><span class="char_num">0</span>자<span class="limit_cnt"> / 1000자(최소 20자)</span></span>
+                                    </div>
+                                </div>
+
+                                <!-- 대표이미지 -->
+                                <div class="input_wrapper">
+                                    <span>대표 이미지</span>
+                                    <div class="info_input" name="bizItemResources">
+                                        <input  name="resourceUrl" placeholder="대표 상품 이미지 url을 입력하세요." >
+                                    </div>
+                                  <!--   <div class="image_file_wrapper">
+                                    
+                                        <div class="add_image">
+                                            <label for="enterprise_img">파일추가</label>
+                                            <input type="file" multiple id="enterprise_img" name="enterprise_img" />
+                                            
+                                        </div>
+
+                                        <ul id="img_list">
+                                            <li class="img_list">
+                                                숨김처리
+                                                 <span>
+                                                    전체<br>업체사진
+                                                </span> 
+                                            </li>
+                                        </ul>
+                                    </div> -->
+                                </div>
+                                
+                                <!-- 예약 상품 이미지 -->
+                                <div class="input_wrapper">
+                                    <span>예약 상품 이미지</span>
+                                    <div class="info_input"  >
+                                        <div class="res_img" name="bizItemResources">
+                                            <input name="resourceUrl" placeholder="예약 상품 이미지 url을 입력하세요." style="margin-bottom: 20px;">
+                                        </div>
+                                        <div class="res_img_btn">
+                                            <button><i class="xi-plus-circle-o"></i>예약 상품 이미지 추가 (최대 120장)</button>
+                                        </div>
+                                    </div>
+                                   
+
+                                  <!--   <div class="image_file_wrapper" >
+
+                                        <div class="add_image">
+                                            <label for="res_img">파일추가</label>
+                                            <input type="file" multiple id="res_img" name="res_img" />
+                                            
+                                        </div>
+
+                                        <ul id="img_list">
+                                            <li class="img_list">
+                                                 <span>
+                                                    전체<br>업체사진
+                                                </span> 
+                                            </li>
+                                        </ul>
+                                    </div> -->
+                                </div>
+
+                                <!-- 상세소개 -->
+                                <div class="intro_detail">
+                                    <div class="intro_detail_title">
+                                        <span>상세소개</span>
+                                    </div>
+                                    <div class="reveal_wrapper">
+                                        <ul class="reveal_ul">
+                                            <li class="reveal_item">
+                                                <div class="reveal_sort_wrapper">
+                                                    <span>노출순서 <span class="reveal_cnt">1</span></span>
+                                                    <div class="sort_btn">
+                                                        <button class="up"><i class="fa-solid fa-angle-up"></i></button>
+                                                        <button class="down"><i class="fa-solid fa-angle-down"></i></button>
+                                                        <i class="fa-solid fa-x"></i>
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="reveal_contents_wrapper" name="extraDescJson">
+                                                    <div class="reveal_input_wrapper">
+                                                        <span>제목</span>
+                                                        <div class="reveal_input">
+                                                            <input type="text" name="title" id="title" placeholder="제목을 입력해주세요." class="limit" maxlength="40" minlength="3">
+                                                            <span><span class="char_num">0</span>자<span class="limit_cnt"> / 40자 (최소 3자)</span></span>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="reveal_input_wrapper">
+                                                        <span>설명</span>
+                                                        <div class="reveal_input">
+                                                            <textarea type="text" name="context" id="context" placeholder="설명을 입력해주세요." class="limit" maxlength="600" minlength="4"></textarea>
+                                                            <span><span class="char_num">0</span>자<span class="limit_cnt"> / 600자 (최소 4자)</span></span>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="reveal_input_wrapper">
+                                                        <span style="margin-right: 16px; ">이미지</span>
+                                                        <div class="reveal_input" name="images">
+                                                            <input name="url" placeholder="상세소개 이미지 url을 입력하세요." style="margin-bottom: 20px;">
+                                                            <input name="url" placeholder="상세소개 이미지 url을 입력하세요." style="margin-bottom: 20px;">
+                                                            <input name="url" placeholder="상세소개 이미지 url을 입력하세요." style="margin-bottom: 20px;">
+                                                        </div>
+                                                    </div>
+                                                  <!--   <div class="reveal_img_wrapper">
+                        
+                                                        <div class="add_image">
+                                                        
+                                                            <label for="reveal_img">파일추가</label>
+                                                            <input type="file" multiple name="reveal_img" id="reveal_img">
+                                                            <span class="reveal_notion" >한 장 당 최대 20MB, 최대 3장</span>
+                                                        </div>
+
+                                                        <ul>
+                                                            <li class="img_list">
+                                                                 <span>
+                                                                    전체<br>업체사진
+                                                                </span> 
+                                                            </li>
+                                                        </ul>
+                                                    </div> -->
+                                                </div>
+
+                                            </li>
+                                        </ul>
+
+                                        <div class="reveal_btn">
+                                            <button><i class="xi-plus-circle-o"></i>상세소개추가</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <!-- 알립니다 -->
+                                <div class="intro_report">
+                                    <div class="intro_report_title">
+                                        <span>알립니다</span>
+                                    </div>
+                                    <div class="reveal_report_wrapper">
+                                        <ul class="reveal_report_ul">
+                                            <li class="reveal_report_item">
+                                                <div class="reveal_report_sort_wrapper">
+                                                    <span>노출순서 <span class="reveal_report_cnt">1</span></span>
+                                                    <div class="report_sort_btn">
+                                                        <button class="up"><i class="fa-solid fa-angle-up"></i></button>
+                                                        <button class="down"><i class="fa-solid fa-angle-down"></i></button>
+                                                        <i class="fa-solid fa-x"></i>
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="reveal_report_contents_wrapper">
+                                                    <div class="reveal_report_input_wrapper">
+                                                        <span>제목</span>
+                                                        <div class="reveal_report_input">
+                                                            <input type="text" name="reveal_report_title" id="reveal_report_title" placeholder="제목을 입력해주세요." class="limit" maxlength="40" minlength="3">
+                                                            <span><span class="char_num">0</span>자<span class="limit_cnt"> / 40자 (최소 3자)</span></span>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="reveal_report_input_wrapper">
+                                                        <span>설명</span>
+                                                        <div class="reveal_report_input">
+                                                            <textarea type="text" name="reveal_report_desc" id="reveal_report_desc" placeholder="설명을 입력해주세요." class="limit" maxlength="600" minlength="4"></textarea>
+                                                            <span><span class="char_num">0</span>자<span class="limit_cnt"> / 600자 (최소 4자)</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="reveal_report_btn">
+                                            <button><i class="xi-plus-circle-o"></i>알립니다추가</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 분단위로 환산 -->
+                                <!-- 진행시간 -->
+                                <div class="input_wrapper">
+                                    <span>진행시간</span>
+                                    <div class="pay_select_wrapper">
+                                        <select class="hour-select time-select" id="pro_hour" name="hour runningTime">
+                                        </select>
+                                    </div>
+                                    <div class="pay_select_wrapper">
+                                        <select class="minutes-select time-select" id="pro_minutes" name="minutes runningTime">
+                                        </select>
+                                    </div>
+                                </div>
+                                                           
+                                <!-- 이용가능연령 -->
+                                <div class="age_wrapper">
+                                    <span class="require"><i class="xi-check "></i>이용가능연령</span>
+
+                                    <div class="age_contents_wrapper" >
+
+                                        <!-- 전연령이용가능여부 -->
+                                        <div class="age_select_wrapper">
+                                            <select class="ageRatingSetting" id="ageRatingSetting" name="ageRatingSetting" >
+                                                <option  value="isAllAvailable" name="isAllAvailable" >전체 이용</option>
+                                               <option value="not_isAllAvailable" name="" >특정 연령 이상 이용</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- 특정 연령 이상 이용가능 -->
+                                        <div class="age_select_wrapper ">
+
+                                            <select class="ageRatingType" id="ageRatingType" name="ageRatingType" disabled>
+                                                <option value="age" name="AGE">나이</option>
+                                                <option value="month" name="MONTH">개월 수</option>
+                                            </select>
+                                            
+                                            <select class="ageRating" id="ageRating" name="ageRating" disabled>
+                                                <option>1세 이상</option>
+                                                <option>2세 이상</option>
+                                                <option>3세 이상</option>
+                                                <option>4세 이상</option>
+                                                <option>5세 이상</option>
+                                                <option>6세 이상</option>
+                                                <option>7세 이상</option>
+                                                <option>8세 이상</option>
+                                                <option>9세 이상</option>
+                                                <option>10세 이상</option>
+                                                <option>11세 이상</option>
+                                                <option>12세 이상</option>
+                                                <option>13세 이상</option>
+                                                <option>14세 이상</option>
+                                                <option>15세 이상</option>
+                                                <option>16세 이상</option>
+                                                <option>17세 이상</option>
+                                                <option>18세 이상</option>
+                                                <option>19세 이상</option>
+                                                <option>20세 이상</option>
+                                            </select>
+
+                                            <div class="age_input" >
+                                                <input  name="monthRating" type="text" class="monthRating" id="monthRating" maxlength="2" disabled>
+                                                <span>개월 이상 이용가능</span>
+                                            </div>
+                                            
+                                        </div>
+
+                                       
+                                        <div class="age_detail">
+                                            <div class="info_input">
+                                                <textarea name="ageRatingDetail" id="ageRatingDetail" cols="20" rows="10"  class="limit" placeholder="이용가능한 연령 관련해 안내할 상세 내용이 있다면 입력해주세요." maxlength="50" ></textarea>
+                                                <span><span class="char_num">0</span>자<span class="limit_cnt"> / 50자</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                                 <!-- 예매수량제한 -->
+                                 <div class="input_wrapper" style="margin-bottom: 50px; border-bottom: 1px solid #ccc; padding-bottom: 50px;">
+                                    <span class="require"><i class="xi-check "></i>예매수량</span>
+                                    <div class="reveal_report_wrapper">
+                                        <ul class="reveal_report_ul">
+                                            <li class="reveal_report_item">
+                        
+                                                <div class="reveal_report_contents_wrapper" style="display: flex;">
+                                                    <div class="reveal_report_input_wrapper" style="margin-right: 20px; display: flex; align-items: center;">
+                                                        <span>최소</span>
+                                                        <div class="reveal_report_input">
+                                                            <input type="text" name="reveal_report_title" id="reveal_report_title" placeholder="최소 예매수량을 입력하세요.">
+                                                           
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="reveal_report_input_wrapper"style="display: flex; align-items: center;">
+                                                        <span>최대</span>
+                                                        <div class="reveal_report_input">
+                                                            <input type="text" name="reveal_report_title" id="reveal_report_title" placeholder="최대 예매수량을 입력하세요.">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 주소 -->
+                                <div class="input_wrapper address" style="padding-top: 0; border-top:0;">
+                                    <span>주소</span>
+                                    <div class="info_input">
+                                        <input type="text" placeholder="주소를 입력하세요." id="jibun" name="jibun" readonly>
+                                    <!--  <input type="text" placeholder="도로명" id="add_doro" readonly> -->
+                                    </div>
+                                </div>
+
+                                <!-- 상세위치 -->
+                                <div class="input_wrapper">
+                                    <span>상세위치</span>
+                                    <div class="info_input">
+                                        <textarea name="add_detail detail" id="add_detail detail" cols="30" rows="10" class="limit" placeholder="방문객이 쉽게 찾도록 위치에 대한 상세한 설명 및 교통편을 입력해주세요." maxlength="400"  ></textarea>
+                                        <span><span class="char_num">0</span>자<span class="limit_cnt"> / 400자</span></span>
+                                    </div>
+                                </div>
+
+                                <!-- 주차 -->
+                                <div class="parking_wrapper">
+                                    <span>주차</span>
+                                    <div class="parking_contents_wrapper">
+
+                                        <!-- 주차설정토글 -->
+                                        <div class="parking_set_button_wrapper">
+                                            <div class="parking_set_choose">
+                                                <span class="on">가능</span>
+                                                <span class="off active">불가</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- 주차가능토글 -->
+                                        <div class="parking_button_wrapper">
+                                            <div class="parking_choose">
+                                                <span class="on">가능</span>
+                                                <span class="off active">불가</span>
+                                            </div>
+                                            <div class="parking_pay">
+                                                <input type="radio" name="parking_pay" id="parking_nonfree">
+                                                <label for="parking_nonfree">주차비 유료</label>
+                                                <input type="radio" name="parking_pay" id="parking_free"checked>
+                                                <label for="parking_free">주차비 무료</label>
+                                            </div>
+                                        </div>
+
+                                        <!-- 과금 -->
+                                        <div class="parking_time_pay" style="display: none;">
+
+                                            <div class="over_time_pay">
+                                                <input type="radio" name="parking_time" id="time_over_pay" class="time_over_pay" checked style="margin-left: 0;">
+                                                <label for="time_over_pay">시간당 과금</label>
+                                                <input type="radio" name="parking_time" id="flat_over_pay" class="flat_over_pay">
+                                                <label for="flat_over_pay">정액 과금</label>
+                                            </div>
+                                            
+                                            <div class="first_pay pay_type">
+                                                <div class="pay_title">
+                                                    <span>최초</span>
+                                                    <div >
+                                                        <input type="radio" name="pay_first" id="pay_first_nonfree" checked> 
+                                                        <label for="valet_nonfree" > 유료</label>
+                                                        <input type="radio" name="pay_first" id="pay_first_free">
+                                                        <label for="">무료</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="pay_select_wrapper">
+                                                    <div class="pay_select">
+                                                        <select name="parking_hour" id="" class="parking_hour">
+                                                            <option value="">00시간</option>
+                                                            <option value="">01시간</option>
+                                                            <option value="">02시간</option>
+                                                            <option value="">03시간</option>
+                                                            <option value="">04시간</option>
+                                                            <option value="">05시간</option>
+                                                            <option value="">06시간</option>
+                                                            <option value="">07시간</option>
+                                                            <option value="">08시간</option>
+                                                            <option value="">09시간</option>
+                                                            <option value="">10시간</option>
+                                                            <option value="">11시간</option>
+                                                            <option value="">12시간</option>
+                                                        </select>
+                    
+                                                        <select name="parking_minute" id="" class="parking_minute">
+                                                            <option value="">00분</option>
+                                                            <option value="">10분</option>
+                                                            <option value="">20분</option>
+                                                            <option value="">30분</option>
+                                                            <option value="">30분</option>
+                                                            <option value="">40분</option>
+                                                            <option value="">50분</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div>
+                                                        <input type="text" class="won" name="won" id="time_over_pay_price" >
+                                                        <span class="unit_won">원</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="over_pay pay_type">
+                                                <div class="pay_title">
+                                                    <span>추가요금</span>
+                                                </div>
+
+                                                <div class="pay_select_wrapper">
+                                                    <div class="pay_select">
+                                                        <select name="parking_hour" id="" class="parking_hour">
+                                                            <option value="">00시간</option>
+                                                            <option value="">01시간</option>
+                                                            <option value="">02시간</option>
+                                                            <option value="">03시간</option>
+                                                            <option value="">04시간</option>
+                                                            <option value="">05시간</option>
+                                                            <option value="">06시간</option>
+                                                            <option value="">07시간</option>
+                                                            <option value="">08시간</option>
+                                                            <option value="">09시간</option>
+                                                            <option value="">10시간</option>
+                                                            <option value="">11시간</option>
+                                                            <option value="">12시간</option>
+                                                        </select>
+                    
+                                                        <select name="parking_minute" id="" class="parking_minute">
+                                                            <option value="">00분</option>
+                                                            <option value="">10분</option>
+                                                            <option value="">20분</option>
+                                                            <option value="">30분</option>
+                                                            <option value="">30분</option>
+                                                            <option value="">40분</option>
+                                                            <option value="">50분</option>
+                                                        </select>
+                                                        
+                                                    </div>
+
+                                                    <div>
+                                                        <input type="text"  class="won" name="won">
+                                                        <span class="unit_won">원</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="total_pay pay_type">
+                                                <div class="pay_title">
+                                                    <span>최대</span>
+                                                </div>
+                                                <input type="text"  class="won" name="won">
+                                                <span class="unit_won">원</span>
+                                            </div>
+
+                                            
+                                        </div>
+
+                                        <!-- 정액과금 -->
+                                        <div class="flat_pay pay_type"style="display: none;">
+                                            <div class="pay_title">
+                                                <span>1회 주차시</span>
+                                            </div>
+                                            <input type="text" class="won" name="won">
+                                            <span class="unit_won">원</span>
+                                        </div>
+
+                                        <!-- 발렛 파킹 -->
+                                        <div class="valet_wrapper">
+                                            <div class="valet_pay_wrapper">
+                                                <div class="valet_title">
+                                                    <span>발렛파킹</span>
+                                                </div>
+                    
+                                                <div class="valet_cost">
+                                                    <input type="radio" name="valet_pay" id="valet_nonfree" > 
+                                                    <label for="valet_nonfree"> 유료</label>
+                                                    <div class="valet_pay_input">
+                                                        <input type="text" class="won" name="won" id="valet_price" disabled>
+                                                        <span class="unit_won">원</span>
+                                                    </div>
+                                                    <input type="radio" name="valet_pay" id="valet_free" >
+                                                    <label for="valet_free"> 무료</label>
+                                                    <input type="radio" name="valet_pay" id="valet_no" checked>
+                                                    <label for="valet_no"> 불가</label>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="valet_detail">
+                                                <div class="valet_detail_title">
+                                                    <span>상세안내</span>
+                                                </div>
+                                                
+                                                <div class="info_input">
+                                                    <textarea name="valet_detail parkingInfoDetail" id="valet_detail parkingInfoDetail" cols="30" rows="10"  class="limit" placeholder="주차 관련 안내할 상세 내용이 있다면 입력해주세요." maxlength="400" ></textarea>
+                                                    <span><span class="char_num">0</span>자<span class="limit_cnt"> / 400자</span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- 예약문의 -->
+                                <div class="reserve_phone ">
+                                    <div class="phone_title">
+                                        <span>연락처</span>
+                                    </div>
+
+                                    <div class="phone_input">
+                                        <input type="text" class="phone" value="010" maxlength="4" name="phone" id="phone_first">
+                                        <span>-</span>
+                                        <input type="text" class="phone" maxlength="4" name="phone" id="phone_middle">
+                                        <span>-</span>
+                                        <input type="text" class="phone" maxlength="4" name="phone" id="phone_last">
+                                    </div>
+                                </div>
+
+                                 <!-- 웹사이트 -->
+                                 <div class="input_wrapper ">
+                                    <span class="require"><i class="xi-check "></i>웹사이트</span>
+
+                                    <div class="info_input">
+                                        <input type="text" placeholder="웹사이트를 입력해주세요." name="web_site" id="web_site">
+                                    </div>
+                                </div>
+
+                                <!-- 잔여재고 -->
+                                <div class="input_wrapper">
+                                    <span>잔여재고 노출</span>
+                                    <!-- 재고노출 토글 -->
+                                    <div class="stock_button_wrapper">
+                                        <div class="stock_set_choose">
+                                            <span class="on">ON</span>
+                                            <span class="off active">OFF</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                    
+                        </div>
+
+                      
+          
+                        <div class="save_btn">
+                            <button>저장</button>
+                        </div>    
+
+                    </div>
+                  
+                </div>
+            </div>
+        </section>
+
+      <!--#include virtual = "/manage/inc/footer.asp"--> 
+
+    </section>
+       
+     <!-- Page Loader -->
+     <div class="page-loader palette-Teal bg">
+        <div class="preloader pl-xl pls-white">
+            <svg class="pl-circular" viewBox="25 25 50 50">
+                <circle class="plc-path" cx="50" cy="50" r="20"/>
+            </svg>
+        </div>
+    </div>
+
+
+
+     <!-- Javascript Libraries -->
+     <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+     <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+     
+     <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+     <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+     <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+
+     <!-- Placeholder for IE9 -->
+     <!--[if IE 9 ]>
+         <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+     <![endif]-->
+
+     <script src="js/functions.js"></script>
+     <script src="js/actions.js"></script>
+     <script src="js/demo.js"></script>
+
+    <script src="https://kit.fontawesome.com/70c929d7d4.js" crossorigin="anonymous"></script>
+    <script src="css/common/plugins/jQuery/jquery-3.6.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js "></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /> 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+
+    <script src="js/insert.js"></script>
+    <script src="js/price.js"></script>
+
+    <script type="text/javascript">
+    
+    function onCloseBtnClick(){
+        var modal = document.querySelector(".price-modal");
+        modal.style.display = "none";
+    }
+
+
+
+    $(document).ready(function() {
+        
+        $("#priceAdd").click(function(){
+            $('#addPrice').show();
+        });
+  
+        $("#seatSlotRepetitionAdd").click(function(){
+            $('#addSeatSlotRepetition').show();
+        });
+  
+        $("#seatSlotRepetitionDelete").click(function(){
+            $('#deleteSeatSlotRepetition').show();
+        });
+    
+
+    });
+    
+    </script>
+    
+</body>
+</html>
+
+<!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>   
+        <![endif]-->
+    
+
